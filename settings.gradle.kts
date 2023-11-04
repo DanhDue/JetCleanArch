@@ -22,4 +22,14 @@ buildCache {
 
 rootProject.name = "JetCleanArch"
 include(":app")
- 
+include(":libraries:framework")
+include(":libraries:jetframework")
+include(":libraries:testutils")
+include(":data:model")
+include(":data:local")
+include(":data:remote")
+include(":data:repository")
+include(":common:theme")
+include(":common:components")
+include(":common:providers")
+include(":domain")

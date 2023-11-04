@@ -206,3 +206,36 @@ fun DependencyHandler.addNavigationDependencies() {
     ksp(Deps.Navigation.destCoreKsp)
     implementation(Deps.Navigation.destAnimation)
 }
+
+val DependencyHandler.FRAMEWORK
+    get() = implementation(project(mapOf("path" to ":libraries:framework")))
+
+val DependencyHandler.JETFRAMEWORK
+    get() = implementation(project(mapOf("path" to ":libraries:jetframework")))
+
+val DependencyHandler.TEST
+    get() = testImplementation(project(mapOf("path" to ":libraries:testutils")))
+
+val DependencyHandler.MODEL
+    get() = implementation(project(mapOf("path" to ":data:model")))
+
+val DependencyHandler.LOCAL
+    get() = implementation(project(mapOf("path" to ":data:local")))
+
+val DependencyHandler.REMOTE
+    get() = implementation(project(mapOf("path" to ":data:remote")))
+
+val DependencyHandler.REPOSITORY
+    get() = implementation(project(mapOf("path" to ":data:repository")))
+
+val DependencyHandler.THEME
+    get() = implementation(project(mapOf("path" to ":common:theme")))
+
+val DependencyHandler.COMPONENT
+    get() = implementation(project(mapOf("path" to ":common:components")))
+
+val DependencyHandler.PROVIDER
+    get() = implementation(project(mapOf("path" to ":common:provider")))
+
+val DependencyHandler.DOMAIN
+    get() = implementation(project(mapOf("path" to ":domain")))
