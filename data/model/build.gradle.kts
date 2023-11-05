@@ -1,4 +1,6 @@
 import extensions.FRAMEWORK
+import extensions.addJsonParsingDependencies
+import extensions.addRoomDependencies
 
 plugins {
     id("commons.android-library")
@@ -11,13 +13,8 @@ android {
 
 dependencies {
     FRAMEWORK
-
     // Moshi
-    implementation(Deps.Networking.moshi)
-    ksp(Deps.Networking.moshiCodeGen)
-    implementation(Deps.Networking.moshiLazyAdapter)
-
+    addJsonParsingDependencies()
     // Room
-    implementation(Deps.Storage.roomKtx)
-    ksp(Deps.Storage.roomCompiler)
+    addRoomDependencies()
 }

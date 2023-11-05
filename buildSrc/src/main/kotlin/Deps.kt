@@ -49,19 +49,22 @@ object Deps {
         const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
         const val retrofitMoshiConverter = "com.squareup.retrofit2:converter-moshi:${Versions.retrofit}"
         const val retrofitGsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
-        const val moshi = "com.squareup.moshi:moshi-kotlin:${Versions.moshi}"
-        const val moshiCodeGen = "com.squareup.moshi:moshi-kotlin-codegen:${Versions.moshi}"
-        const val moshiLazyAdapter = "com.serjltt.moshi:moshi-lazy-adapters:${Versions.moshiLazyAdapter}"
-
-        object Okhttp {
-            const val bom = "com.squareup.okhttp3:okhttp-bom:${Versions.okhttp}"
-            const val core = "com.squareup.okhttp3:okhttp"
-            const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor"
-            const val mockwebserver = "com.squareup.okhttp3:mockwebserver:${Versions.okhttp}"
-        }
 
         const val chuckerDebug = "com.github.chuckerteam.chucker:library:${Versions.chucker}"
         const val chuckerRelease = "com.github.chuckerteam.chucker:library-no-op:${Versions.chucker}"
+    }
+
+    object Okhttp {
+        const val bom = "com.squareup.okhttp3:okhttp-bom:${Versions.okhttp}"
+        const val core = "com.squareup.okhttp3:okhttp"
+        const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor"
+        const val mockwebserver = "com.squareup.okhttp3:mockwebserver:${Versions.okhttp}"
+    }
+
+    object Moshi {
+        const val core = "com.squareup.moshi:moshi-kotlin:${Versions.moshi}"
+        const val codeGen = "com.squareup.moshi:moshi-kotlin-codegen:${Versions.moshi}"
+        const val lazyAdapter = "com.serjltt.moshi:moshi-lazy-adapters:${Versions.moshiLazyAdapter}"
     }
 
     object Storage {
@@ -78,6 +81,16 @@ object Deps {
         const val coroutineCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutine}"
         const val coroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.kotlinCoroutine}"
         const val coroutineTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.kotlinCoroutine}"
+    }
+
+    object Firebase {
+        const val bom = "com.google.firebase:firebase-bom:${Versions.firebase}"
+        const val analytics = "com.google.firebase:firebase-analytics"
+        const val crashlytics = "com.google.firebase:firebase-crashlytics"
+        const val messaging = "com.google.firebase:firebase-messaging"
+        const val inAppMessaging = "com.google.firebase:firebase-inappmessaging"
+        const val inAppMessagingDisplay = "com.google.firebase:firebase-inappmessaging-display"
+        const val remoteConfig = "com.google.firebase:firebase-config"
     }
 
     object Test {

@@ -140,17 +140,28 @@ fun DependencyHandler.addCommonDependencies() {
 }
 
 fun DependencyHandler.addNetworkDependencies() {
-    implementation(Deps.Networking.moshi)
-    ksp(Deps.Networking.moshiCodeGen)
-    implementation(Deps.Networking.moshiLazyAdapter)
+    addJsonParsingDependencies()
+    // Retrofit
     implementation(Deps.Networking.retrofit)
     implementation(Deps.Networking.retrofitMoshiConverter)
-    implementation(platform(Deps.Networking.Okhttp.bom))
-    implementation(Deps.Networking.Okhttp.core)
-    implementation(Deps.Networking.Okhttp.loggingInterceptor)
-    testImplementation(Deps.Networking.Okhttp.mockwebserver)
+    // okhttp
+    addOkhttpDependencies()
+    // chucker
     debugImplementation(Deps.Networking.chuckerDebug)
     releaseImplementation(Deps.Networking.chuckerRelease)
+}
+
+fun DependencyHandler.addJsonParsingDependencies() {
+    implementation(Deps.Moshi.core)
+    ksp(Deps.Moshi.codeGen)
+    implementation(Deps.Moshi.lazyAdapter)
+}
+
+fun DependencyHandler.addOkhttpDependencies() {
+    implementation(platform(Deps.Okhttp.bom))
+    implementation(Deps.Okhttp.core)
+    implementation(Deps.Okhttp.loggingInterceptor)
+    testImplementation(Deps.Okhttp.mockwebserver)
 }
 
 fun DependencyHandler.addTestDependencies() {
@@ -163,11 +174,15 @@ fun DependencyHandler.addTestDependencies() {
 }
 
 fun DependencyHandler.addStorageDependencies() {
-    implementation(Deps.Storage.roomKtx)
-    ksp(Deps.Storage.roomCompiler)
+    addRoomDependencies()
     implementation(Deps.Storage.dataStorePref)
     implementation(Deps.Storage.dataStore)
     implementation(Deps.Storage.securePref)
+}
+
+fun DependencyHandler.addRoomDependencies() {
+    implementation(Deps.Storage.roomKtx)
+    ksp(Deps.Storage.roomCompiler)
 }
 
 fun DependencyHandler.addHiltDependencies() {
@@ -207,6 +222,14 @@ fun DependencyHandler.addNavigationDependencies() {
     implementation(Deps.Navigation.destAnimation)
 }
 
+fun DependencyHandler.addFirebaseDependencies() {
+    implementation(platform(Deps.Firebase.bom))
+    implementation(Deps.Firebase.analytics)
+    implementation(Deps.Firebase.crashlytics)
+    implementation(Deps.Firebase.messaging)
+    implementation(Deps.Firebase.remoteConfig)
+}
+
 val DependencyHandler.FRAMEWORK
     get() = implementation(project(mapOf("path" to ":libraries:framework")))
 
@@ -235,7 +258,7 @@ val DependencyHandler.COMPONENT
     get() = implementation(project(mapOf("path" to ":common:components")))
 
 val DependencyHandler.PROVIDER
-    get() = implementation(project(mapOf("path" to ":common:provider")))
+    get() = implementation(project(mapOf("path" to ":common:providers")))
 
 val DependencyHandler.DOMAIN
     get() = implementation(project(mapOf("path" to ":domain")))

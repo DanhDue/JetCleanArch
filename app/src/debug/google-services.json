@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "502945070861",
+    "project_id": "jetcleanarch",
+    "storage_bucket": "jetcleanarch.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:502945070861:android:ce02f66bcec78cf7b8fa44",
+        "android_client_info": {
+          "package_name": "com.danhdue.jetcleanarch"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZSZJaOSqwXX7xE9eU3Z4dO45O2bIWOgI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:502945070861:android:cd6893829fdce68cb8fa44",
+        "android_client_info": {
+          "package_name": "com.danhdue.jetcleanarch.dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZSZJaOSqwXX7xE9eU3Z4dO45O2bIWOgI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

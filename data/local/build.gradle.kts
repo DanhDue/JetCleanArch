@@ -1,5 +1,6 @@
 import extensions.FRAMEWORK
 import extensions.MODEL
+import extensions.addRoomDependencies
 
 plugins {
     id("commons.android-library")
@@ -13,8 +14,6 @@ android {
 dependencies {
     FRAMEWORK
     MODEL
-
     // Room
-    implementation(Deps.Storage.roomKtx)
-    ksp(Deps.Storage.roomCompiler)
+    addRoomDependencies()
 }

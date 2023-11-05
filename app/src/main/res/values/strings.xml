@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">JetCleanArch</string>
+    <string name="title_splash">Splash</string>
 </resources>

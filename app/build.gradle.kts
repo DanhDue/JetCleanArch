@@ -1,11 +1,13 @@
 import extensions.addCommonDependencies
 import extensions.addComposeDependencies
+import extensions.addFirebaseDependencies
 import extensions.addHiltDependencies
 import extensions.addNetworkDependencies
 import extensions.addStorageDependencies
 import extensions.addTestDependencies
 import extensions.addWorkManagerDependencies
 import extensions.implementation
+import extensions.setSigningConfigs
 
 plugins {
     id("com.android.application")
@@ -14,6 +16,11 @@ plugins {
     id("com.google.dagger.hilt.android")
     id("kotlin-parcelize")
     kotlin("kapt")
+}
+
+if (file("google-services.json").exists()) {
+    apply(plugin = "com.google.gms.google-services")
+    apply(plugin = "com.google.firebase.crashlytics")
 }
 
 android {
@@ -102,54 +109,38 @@ android {
         disable.add("MissingTranslation")
     }
 
+//    dynamicFeatures += setOf(":features:splash")
+
+    setSigningConfigs(project)
+
     buildTypes {
-        getByName("debug") {
+        debug {
+            signingConfig = signingConfigs.getByName("debug")
             isDebuggable = true
             applicationIdSuffix = ".debug"
             enableUnitTestCoverage = false
             enableAndroidTestCoverage = false
-            resValue("string", "app_name", "ViVi(Sta)")
-            buildConfigField(
-                "String",
-                "API_BASE_URL",
-                "\"https://dev-cloud.vinbase.ai\""
-            )
-            buildConfigField(
-                "String",
-                "LOGIN_API_BASE_URL",
-                "\"https://dev-iam.vinbase.ai\""
-            )
-            buildConfigField(
-                "String",
-                "WSS_BASE_URL",
-                "\"wss://dev-cloud.vinbase.ai\""
-            )
+            resValue("string", "app_name", "JetCleanArch(Dev)")
+
+            buildConfigField("String", "BASE_URL", "\"${Configs.Release.BaseUrl}\"")
+            buildConfigField("String", "DB_NAME", "\"${Configs.Release.DbName}\"")
         }
 
-        getByName("release") {
-            isMinifyEnabled = false
+        release {
+            signingConfig = signingConfigs.getByName("signingConfigRelease")
+            isDebuggable = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             enableUnitTestCoverage = false
             enableAndroidTestCoverage = false
-            resValue("string", "app_name", "ViVi(Sta)")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            buildConfigField(
-                "String",
-                "API_BASE_URL",
-                "\"https://dev-cloud.vinbase.ai\""
-            )
-            buildConfigField(
-                "String",
-                "LOGIN_API_BASE_URL",
-                "\"https://dev-iam.vinbase.ai\""
-            )
-            buildConfigField(
-                "String",
-                "WSS_BASE_URL",
-                "\"wss://dev-cloud.vinbase.ai\""
-            )
+            resValue("string", "app_name", "JetCleanArch(Stg)")
+
+            buildConfigField("String", "BASE_URL", "\"${Configs.Debug.BaseUrl}\"")
+            buildConfigField("String", "DB_NAME", "\"${Configs.Debug.DbName}\"")
         }
     }
 }
@@ -183,6 +174,8 @@ dependencies {
     addWorkManagerDependencies()
 
     addTestDependencies()
+
+    addFirebaseDependencies()
 }
 
 // Allow references to generated code

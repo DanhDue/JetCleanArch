@@ -39,4 +39,5 @@ object Versions {
     const val splashScreen = "1.0.1"
     const val navigation = "1.9.54"
     const val paging = "3.1.1"
+    const val firebase = "32.5.0"
 }
