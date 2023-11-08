@@ -3,9 +3,11 @@ package extensions
 import Configs
 import Deps
 import com.android.build.api.dsl.BuildType
+import org.gradle.api.Action
 import org.gradle.api.artifacts.Dependency
 import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.kotlin.dsl.add
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
 
 //import com.android.build.gradle.internal.dsl.BuildType
 
@@ -134,6 +136,18 @@ fun DependencyHandler.kspTest(dependencyNotation: Any): Dependency? =
 fun DependencyHandler.kspAndroidTest(dependencyNotation: Any): Dependency? =
     add("kspAndroidTest", dependencyNotation)
 
+/**
+ * Retrieves the [kotlinOptions][org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions] extension.
+ */
+val com.android.build.gradle.LibraryExtension.kotlinOptions: org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions get() =
+    (this as org.gradle.api.plugins.ExtensionAware).extensions.getByName("kotlinOptions") as org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
+
+/**
+ * Configures the [kotlinOptions][org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions] extension.
+ */
+fun com.android.build.gradle.LibraryExtension.kotlinOptions(configure: Action<KotlinJvmOptions>): Unit =
+    (this as org.gradle.api.plugins.ExtensionAware).extensions.configure("kotlinOptions", configure)
+
 fun BuildType.addDebugBuildTypeConfigs() {
     enableUnitTestCoverage = false
     enableAndroidTestCoverage = false
@@ -232,7 +246,7 @@ fun DependencyHandler.addComposeDependencies() {
     implementation(Deps.Compose.pagingCompose)
     implementation(Deps.Compose.coil)
     implementation(Deps.Compose.composeUIGraphics)
-    implementation(Deps.Compose.material3)
+//    implementation(Deps.Compose.material3)
 
     // Accompanist
     implementation(Deps.Accompanist.swiperefresh)

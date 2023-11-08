@@ -1,3 +1,4 @@
+import commons.addDefaultConfig
 import extensions.addNetworkDependencies
 import extensions.addTestDependencies
 
@@ -9,8 +10,14 @@ plugins {
 }
 
 android {
-    compileSdk = AppConfig.compileSdk
     namespace = "com.danhdue.jetcleanarch.testutils"
+
+    addDefaultConfig()
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_17.toString()
+        freeCompilerArgs = Configs.FreeCoroutineCompilerArgs
+    }
 }
 
 dependencies {

@@ -5,6 +5,8 @@ import com.google.devtools.ksp.processing.Resolver
 import AppConfig
 import java.io.File
 import com.android.build.api.dsl.CommonExtension
+import com.android.build.api.dsl.LibraryExtension
+import org.gradle.api.JavaVersion
 import org.gradle.api.artifacts.dsl.DependencyHandler
 
 /**
@@ -26,6 +28,12 @@ fun getLocalProperty(key: String, file: String = "local.properties"): Any {
  * Adds the base Compose configurations on Gradle.
  */
 fun CommonExtension<*, *, *, *, *>.addComposeConfig() {
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
     buildFeatures {
         compose = true
     }
@@ -51,6 +59,11 @@ fun CommonExtension<*, *, *, *, *>.addDefaultConfig() {
         compileSdk = AppConfig.compileSdk
         minSdk = AppConfig.minSdk
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     testOptions {

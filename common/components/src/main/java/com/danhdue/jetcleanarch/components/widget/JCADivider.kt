@@ -16,7 +16,7 @@ import com.danhdue.jetcleanarch.theme.JetCleanArchTheme
 import com.danhdue.jetcleanarch.theme.dividerColor
 
 @Composable
-fun JRDivider(modifier: Modifier = Modifier) {
+fun JCADivider(modifier: Modifier = Modifier) {
     Divider(
         modifier = modifier
             .fillMaxWidth()
@@ -31,7 +31,7 @@ fun JRDivider(modifier: Modifier = Modifier) {
 private fun DividerPreview() {
     JetCleanArchTheme {
         Box(Modifier.size(height = 10.dp, width = 100.dp)) {
-            JRDivider(Modifier.align(Alignment.Center))
+            JCADivider(Modifier.align(Alignment.Center))
         }
     }
 }

@@ -22,7 +22,7 @@ import com.danhdue.jetcleanarch.theme.JetCleanArchTypography
 import com.danhdue.jetcleanarch.theme.navigationBackIconColor
 
 @Composable
-fun JRToolbar(
+fun JCAToolbar(
     @StringRes titleResId: Int,
     elevation: Dp = AppBarDefaults.TopAppBarElevation
 ) {
@@ -42,7 +42,7 @@ fun JRToolbar(
 }
 
 @Composable
-fun JRToolbarWithNavIcon(
+fun JCAToolbarWithNavIcon(
     @StringRes titleResId: Int,
     pressOnBack: () -> Unit
 ) {
