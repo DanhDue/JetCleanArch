@@ -1,3 +1,4 @@
+import extensions.TEST
 import extensions.addCommonDependencies
 import extensions.addComposeDependencies
 import extensions.addDebugBuildTypeConfigs
@@ -7,7 +8,6 @@ import extensions.addModuleDependencies
 import extensions.addNetworkDependencies
 import extensions.addReleaseBuildTypeConfigs
 import extensions.addStorageDependencies
-import extensions.addTestDependencies
 import extensions.addWorkManagerDependencies
 import extensions.buildConfigBooleanField
 import extensions.buildConfigStringField
@@ -168,7 +168,7 @@ dependencies {
 
     addWorkManagerDependencies()
 
-    addTestDependencies()
+    TEST
 
     addFirebaseDependencies()
 }

@@ -186,12 +186,12 @@ fun DependencyHandler.addOkhttpDependencies() {
 }
 
 fun DependencyHandler.addTestDependencies() {
-    testImplementation(Deps.Test.junit)
-    androidTestImplementation(Deps.Test.junitExt)
-    androidTestImplementation(Deps.espressoCore)
-    testImplementation(Deps.Kotlin.coroutineTest)
-    testImplementation(Deps.Test.robolectric)
-    testImplementation(Deps.Test.mockk)
+    api(Deps.Test.junit)
+    api(Deps.Test.junitExt)
+    api(Deps.espressoCore)
+    api(Deps.Kotlin.coroutineTest)
+    api(Deps.Test.robolectric)
+    api(Deps.Test.mockk)
 }
 
 fun DependencyHandler.addStorageDependencies() {

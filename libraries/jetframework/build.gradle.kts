@@ -1,3 +1,5 @@
+import extensions.addFirebaseDependencies
+
 plugins {
     id("commons.android-library")
     id("commons.android-compose")
@@ -5,4 +7,8 @@ plugins {
 
 android {
     namespace = "com.danhdue.jetcleanarch.jetframework"
+}
+
+dependencies {
+    addFirebaseDependencies()
 }

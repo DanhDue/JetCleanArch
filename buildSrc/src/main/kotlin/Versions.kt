@@ -48,4 +48,8 @@ object Versions {
     const val coil = "2.5.0"
     const val accompanist = "0.32.0"
     const val accompanistInsets = "0.31.5-beta"
+    const val truth = "1.1.3"
+    const val turbine = "0.7.0"
+    const val mockwebserver = "5.0.0-alpha.11"
+    const val json = "20231013"
 }

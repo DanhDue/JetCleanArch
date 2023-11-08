@@ -1,5 +1,7 @@
 package commons
 
+import extensions.TEST
+import extensions.addCommonDependencies
 import extensions.addComposeDependencies
 
 plugins {
@@ -9,4 +11,8 @@ plugins {
 
 android { addComposeConfig() }
 
-dependencies { addComposeDependencies() }
+dependencies {
+    addCommonDependencies()
+    addComposeDependencies()
+    TEST
+}

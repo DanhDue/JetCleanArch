@@ -2,8 +2,8 @@ package commons
 
 import AppConfig
 import Configs
+import extensions.TEST
 import extensions.addCommonDependencies
-import extensions.addTestDependencies
 import extensions.buildConfigBooleanField
 import extensions.buildConfigStringField
 
@@ -72,5 +72,5 @@ dependencies {
     // Common
     addCommonDependencies()
     // Test
-    addTestDependencies()
+    TEST
 }

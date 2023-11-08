@@ -133,6 +133,10 @@ object Deps {
         const val hamcrestCore = "org.hamcrest:hamcrest-core:${Versions.hamcrest}"
         const val mockk = "io.mockk:mockk:${Versions.mockk}"
         const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
+        const val truth = "com.google.truth:truth:${Versions.truth}"
+        const val turbine = "app.cash.turbine:turbine:${Versions.turbine}"
+        const val mockwebserver = "com.squareup.okhttp3:mockwebserver:${Versions.mockwebserver}"
+        const val json = "org.json:json:${Versions.json}"
     }
 }
 
