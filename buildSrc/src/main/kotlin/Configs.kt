@@ -15,6 +15,7 @@ object Configs {
     val VersionCode = generateVersionCode()
     val VersionName = generateVersionName()
     const val AndroidJunitRunner = "androidx.test.runner.AndroidJUnitRunner"
+
     val FreeCompilerArgs = listOf(
         "-Xjvm-default=all",
         "-opt-in=kotlin.RequiresOptIn",
@@ -36,13 +37,36 @@ object Configs {
         "-opt-in=kotlinx.coroutines.FlowPreview"
     )
 
+    object BuildConfigKey {
+        const val bitbucketUserNameKey = "bitbucket.userName"
+
+        const val debugBuildTypeName = "debug"
+        const val debugSigningConfigName = "debug"
+        const val releaseBuildTypeName = "release"
+        const val releaseSigningConfigName = "signingConfigRelease"
+
+        const val crashlyticsEnableKey = "crashlyticsEnabled"
+        const val analyticsEnableKey = "analyticsEnabled"
+
+        const val BASE_URL = "BASE_URL"
+        const val DB_NAME = "DB_NAME"
+        const val CRASHLYTIC_IS_ENABLE = "CRASHLYTIC_IS_ENABLE"
+        const val ANALYTIC_IS_ENABLE = "ANALYTIC_IS_ENABLE"
+    }
+
     object Release {
         const val BaseUrl = "https://danhdue.com/api/"
         const val DbName = "JetCleanArchDb"
+
+        const val crashlyticsEnable = true
+        const val analyticsEnable = true
     }
 
     object Debug {
         const val BaseUrl = "https://danhdue.com/api/"
         const val DbName = "JetCleanArchDb"
+
+        const val crashlyticsEnable = false
+        const val analyticsEnable = false
     }
 }

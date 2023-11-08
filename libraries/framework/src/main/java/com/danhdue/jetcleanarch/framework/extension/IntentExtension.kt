@@ -89,7 +89,7 @@ fun Context.shareApplication() {
     val appPackageName = packageName
 
     val shareIntent = getActivity()?.let {
-        ShareCompat.IntentBuilder.from(it)
+        ShareCompat.IntentBuilder(it)
             .setType("text/plain")
             .setText(
                 "https://play.google.com/store/apps/details?id=$appPackageName"

@@ -10,6 +10,7 @@ class CacheStore(context: Context, fileName: String) {
     private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = fileName)
     var dataStore = context.dataStore
 
+    @Suppress("UNCHECKED_CAST")
     suspend fun <T> read(key: String, defaultValue: T): T {
         val preferences = dataStore.data.first()
         return when (defaultValue) {

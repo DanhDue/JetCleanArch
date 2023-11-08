@@ -13,6 +13,4 @@ object AppConfig {
     const val proguardConsumerRules = "proguard-rules.pro"
     const val jvmTarget = "17"
     const val kotlinCompilerExtensionVersion = "1.5.3"
-
-    const val bitbucketUserNameKey = "bitbucket.userName"
 }

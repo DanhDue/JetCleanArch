@@ -23,7 +23,7 @@ android {
 }
 
 dependencies {
-    implementation(Deps.timber)
+    implementation(Deps.multidex)
     // Paging
     implementation(Deps.paging)
     addNetworkDependencies()

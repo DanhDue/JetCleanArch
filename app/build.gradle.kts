@@ -1,11 +1,16 @@
 import extensions.addCommonDependencies
 import extensions.addComposeDependencies
+import extensions.addDebugBuildTypeConfigs
 import extensions.addFirebaseDependencies
 import extensions.addHiltDependencies
+import extensions.addModuleDependencies
 import extensions.addNetworkDependencies
+import extensions.addReleaseBuildTypeConfigs
 import extensions.addStorageDependencies
 import extensions.addTestDependencies
 import extensions.addWorkManagerDependencies
+import extensions.buildConfigBooleanField
+import extensions.buildConfigStringField
 import extensions.implementation
 import extensions.setSigningConfigs
 
@@ -15,7 +20,6 @@ plugins {
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
     id("kotlin-parcelize")
-    kotlin("kapt")
 }
 
 if (file("google-services.json").exists()) {
@@ -42,16 +46,6 @@ android {
         }
     }
 
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile(AppConfig.proguardOptimizedFileName),
-                AppConfig.proguardConsumerRules
-            )
-        }
-    }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -59,6 +53,7 @@ android {
 
     kotlinOptions {
         jvmTarget = AppConfig.jvmTarget
+        freeCompilerArgs = Configs.FreeCompilerArgs
     }
 
     buildFeatures {
@@ -115,32 +110,32 @@ android {
 
     buildTypes {
         debug {
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.getByName(Configs.BuildConfigKey.debugSigningConfigName)
             isDebuggable = true
-            applicationIdSuffix = ".debug"
-            enableUnitTestCoverage = false
-            enableAndroidTestCoverage = false
+            applicationIdSuffix = ".dev"
+            addDebugBuildTypeConfigs()
             resValue("string", "app_name", "JetCleanArch(Dev)")
 
-            buildConfigField("String", "BASE_URL", "\"${Configs.Release.BaseUrl}\"")
-            buildConfigField("String", "DB_NAME", "\"${Configs.Release.DbName}\"")
+            buildConfigStringField(Configs.BuildConfigKey.BASE_URL, Configs.Debug.BaseUrl)
+            buildConfigStringField(Configs.BuildConfigKey.DB_NAME, Configs.Debug.DbName)
+            buildConfigBooleanField(Configs.BuildConfigKey.CRASHLYTIC_IS_ENABLE, Configs.Debug.crashlyticsEnable)
+            buildConfigBooleanField(Configs.BuildConfigKey.ANALYTIC_IS_ENABLE, Configs.Debug.analyticsEnable)
         }
 
         release {
-            signingConfig = signingConfigs.getByName("signingConfigRelease")
+            signingConfig = signingConfigs.getByName(Configs.BuildConfigKey.releaseSigningConfigName)
             isDebuggable = false
-            isMinifyEnabled = true
-            isShrinkResources = true
-            enableUnitTestCoverage = false
-            enableAndroidTestCoverage = false
+            addReleaseBuildTypeConfigs()
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                getDefaultProguardFile(AppConfig.proguardOptimizedFileName),
+                AppConfig.proguardConsumerRules
             )
             resValue("string", "app_name", "JetCleanArch(Stg)")
 
-            buildConfigField("String", "BASE_URL", "\"${Configs.Debug.BaseUrl}\"")
-            buildConfigField("String", "DB_NAME", "\"${Configs.Debug.DbName}\"")
+            buildConfigStringField(Configs.BuildConfigKey.BASE_URL, Configs.Release.BaseUrl)
+            buildConfigStringField(Configs.BuildConfigKey.DB_NAME, Configs.Release.DbName)
+            buildConfigBooleanField(Configs.BuildConfigKey.CRASHLYTIC_IS_ENABLE, Configs.Release.crashlyticsEnable)
+            buildConfigBooleanField(Configs.BuildConfigKey.ANALYTIC_IS_ENABLE, Configs.Release.analyticsEnable)
         }
     }
 }
@@ -159,13 +154,13 @@ dependencies {
 
     implementation(Deps.multidex)
 
+    addModuleDependencies()
+
     addStorageDependencies()
 
     addCommonDependencies()
 
     addComposeDependencies()
-
-    implementation(Deps.timber)
 
     addHiltDependencies()
 
@@ -176,9 +171,4 @@ dependencies {
     addTestDependencies()
 
     addFirebaseDependencies()
-}
-
-// Allow references to generated code
-kapt {
-    correctErrorTypes = true
 }

@@ -1,9 +1,13 @@
 package extensions
 
+import Configs
 import Deps
+import com.android.build.api.dsl.BuildType
 import org.gradle.api.artifacts.Dependency
 import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.kotlin.dsl.add
+
+//import com.android.build.gradle.internal.dsl.BuildType
 
 /**
  * Adds a dependency to the `releaseImplementation` configuration.
@@ -130,7 +134,24 @@ fun DependencyHandler.kspTest(dependencyNotation: Any): Dependency? =
 fun DependencyHandler.kspAndroidTest(dependencyNotation: Any): Dependency? =
     add("kspAndroidTest", dependencyNotation)
 
+fun BuildType.addDebugBuildTypeConfigs() {
+    enableUnitTestCoverage = false
+    enableAndroidTestCoverage = false
+    manifestPlaceholders[Configs.BuildConfigKey.crashlyticsEnableKey] = false
+    manifestPlaceholders[Configs.BuildConfigKey.analyticsEnableKey] = false
+}
+
+fun BuildType.addReleaseBuildTypeConfigs() {
+    isMinifyEnabled = true
+    isShrinkResources = true
+    enableUnitTestCoverage = false
+    enableAndroidTestCoverage = false
+    manifestPlaceholders[Configs.BuildConfigKey.crashlyticsEnableKey] = true
+    manifestPlaceholders[Configs.BuildConfigKey.analyticsEnableKey] = true
+}
+
 fun DependencyHandler.addCommonDependencies() {
+    implementation(Deps.timber)
     implementation(Deps.coreKtx)
     implementation(Deps.appCompat)
     implementation(Deps.Kotlin.coroutineCore)
@@ -187,23 +208,45 @@ fun DependencyHandler.addRoomDependencies() {
 
 fun DependencyHandler.addHiltDependencies() {
     implementation(Deps.Hilt.core)
-    kapt(Deps.Hilt.compiler)
+    ksp(Deps.Hilt.compiler)
     androidTestImplementation(Deps.Hilt.testing)
-    kaptAndroidTest(Deps.Hilt.compiler)
+    kspAndroidTest(Deps.Hilt.compiler)
     testImplementation(Deps.Hilt.testing)
-    kaptTest(Deps.Hilt.compiler)
+    kspTest(Deps.Hilt.compiler)
 }
 
 fun DependencyHandler.addComposeDependencies() {
-    implementation(Deps.activityCompose)
-    implementation(platform(Deps.composeBOM))
-    implementation(Deps.composeUI)
-    implementation(Deps.composeUIGraphics)
-    implementation(Deps.uiToolingPreview)
-    implementation(Deps.material3)
+    implementation(platform(Deps.Compose.composeBOM))
+    implementation(Deps.Compose.composeUI)
+    implementation(Deps.Compose.material)
+    implementation(Deps.Compose.uiToolingPreview)
+    implementation(Deps.Compose.runtime)
+    implementation(Deps.Compose.foundation)
+    implementation(Deps.Compose.iconsCore)
+    implementation(Deps.Compose.iconsExtended)
+
+    implementation(Deps.Compose.activityCompose)
+    implementation(Deps.Compose.lifecycleViewmodelCompose)
+    implementation(Deps.Compose.constraintLayout)
+    implementation(Deps.Compose.lottieCompose)
+    implementation(Deps.Compose.pagingCompose)
+    implementation(Deps.Compose.coil)
+    implementation(Deps.Compose.composeUIGraphics)
+    implementation(Deps.Compose.material3)
+
+    // Accompanist
+    implementation(Deps.Accompanist.swiperefresh)
+    implementation(Deps.Accompanist.systemuicontroller)
+    implementation(Deps.Accompanist.insets)
+    implementation(Deps.Accompanist.materialPlaceHolder)
+    implementation(Deps.Accompanist.navigation)
+    implementation(Deps.Accompanist.permissions)
+    implementation(Deps.Accompanist.pager)
+    implementation(Deps.Accompanist.pagerIndicators)
+    implementation(Deps.Accompanist.webview)
 
     // Compose Testing
-    androidTestImplementation(platform(Deps.composeBOM))
+    androidTestImplementation(platform(Deps.Compose.composeBOM))
     debugImplementation(Deps.Test.uiTooling)
     debugImplementation(Deps.Test.uiTestManifest)
     androidTestImplementation(Deps.Test.uiTestJunit4)
@@ -228,6 +271,23 @@ fun DependencyHandler.addFirebaseDependencies() {
     implementation(Deps.Firebase.crashlytics)
     implementation(Deps.Firebase.messaging)
     implementation(Deps.Firebase.remoteConfig)
+}
+
+fun DependencyHandler.addModuleDependencies() {
+    implementation(project(mapOf("path" to ":domain")))
+
+    implementation(project(mapOf("path" to ":data:model")))
+    implementation(project(mapOf("path" to ":data:local")))
+    implementation(project(mapOf("path" to ":data:remote")))
+    implementation(project(mapOf("path" to ":data:repository")))
+
+    implementation(project(mapOf("path" to ":common:theme")))
+    implementation(project(mapOf("path" to ":common:components")))
+    implementation(project(mapOf("path" to ":common:providers")))
+
+    implementation(project(mapOf("path" to ":libraries:framework")))
+    implementation(project(mapOf("path" to ":libraries:jetframework")))
+    implementation(project(mapOf("path" to ":libraries:testutils")))
 }
 
 val DependencyHandler.FRAMEWORK

@@ -1,9 +1,11 @@
 package com.danhdue.jetcleanarch.framework.extension
 
+import android.content.res.AssetManager
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import java.io.IOException
 
 val moshi: Moshi = Moshi.Builder()
     .addLast(KotlinJsonAdapterFactory())
@@ -30,9 +32,54 @@ inline fun <reified T> String.fromJsonList(): List<T>? {
 
 inline fun <reified T> T.toJson(): String {
     return try {
-        val jsonAdapter = moshi.adapter(T::class.java).serializeNulls().lenient()
+        val jsonAdapter = moshi.adapter(T::class.java)
+            .serializeNulls().lenient()
         jsonAdapter.toJson(this)
     } catch (ex: Exception) {
         ""
     }
+}
+
+inline fun <reified T> T.toJsonString(): String? {
+    return try {
+        val jsonAdapter = moshi.adapter(T::class.java)
+            .serializeNulls().lenient().indent("   ")
+        jsonAdapter.toJson(this)
+    } catch (ex: Exception) { null }
+}
+
+inline fun <reified T> getObjectFromJsonFile(assets: AssetManager, fileName: String): T? {
+    var json: String? = null
+    try {
+        val inputStream = assets.open(fileName)
+        val size = inputStream.available()
+        val buffer = ByteArray(size)
+        inputStream.read(buffer)
+        inputStream.close()
+        json = String(buffer, Charsets.UTF_8)
+    } catch (e: IOException) {
+        e.printStackTrace()
+    }
+
+    return json?.let {
+        val jsonAdapter = moshi.adapter(T::class.java)
+            .serializeNulls().lenient()
+        jsonAdapter.fromJson(json)
+    }
+
+}
+
+fun getJsonStringFromFile(assets: AssetManager, fileName: String): String {
+    var json = ""
+    try {
+        val inputStream = assets.open(fileName)
+        val size = inputStream.available()
+        val buffer = ByteArray(size)
+        inputStream.read(buffer)
+        inputStream.close()
+        json = String(buffer, Charsets.UTF_8)
+    } catch (e: IOException) {
+        e.printStackTrace()
+    }
+    return json
 }

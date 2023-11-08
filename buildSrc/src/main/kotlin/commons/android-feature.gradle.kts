@@ -1,20 +1,17 @@
 package commons
 
 import AppConfig
-import com.android.build.api.dsl.BuildType
+import Configs
 import extensions.addCommonDependencies
 import extensions.addTestDependencies
-import gradle.kotlin.dsl.accessors._d7120d7b9fabd4a3bf278696cbed37f1.kapt
-import org.gradle.api.JavaVersion
-import org.gradle.kotlin.dsl.dependencies
-import java.io.File
+import extensions.buildConfigBooleanField
+import extensions.buildConfigStringField
 
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.parcelize")
     id("com.google.devtools.ksp")
-    kotlin("kapt")
 }
 
 android {
@@ -22,19 +19,22 @@ android {
 
     defaultConfig {
         minSdk = AppConfig.minSdk
-        targetSdk = AppConfig.targetSdk
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            buildConfigStringField("BASE_URL", Configs.Release.BaseUrl)
-            buildConfigStringField("DB_NAME", Configs.Release.DbName)
+            buildConfigStringField(Configs.BuildConfigKey.BASE_URL, Configs.Release.BaseUrl)
+            buildConfigStringField(Configs.BuildConfigKey.DB_NAME, Configs.Release.DbName)
+            buildConfigBooleanField(Configs.BuildConfigKey.CRASHLYTIC_IS_ENABLE, Configs.Release.crashlyticsEnable)
+            buildConfigBooleanField(Configs.BuildConfigKey.ANALYTIC_IS_ENABLE, Configs.Release.analyticsEnable)
         }
 
         debug {
-            buildConfigStringField("BASE_URL", Configs.Debug.BaseUrl)
-            buildConfigStringField("DB_NAME", Configs.Debug.DbName)
+            buildConfigStringField(Configs.BuildConfigKey.BASE_URL, Configs.Debug.BaseUrl)
+            buildConfigStringField(Configs.BuildConfigKey.DB_NAME, Configs.Debug.DbName)
+            buildConfigBooleanField(Configs.BuildConfigKey.CRASHLYTIC_IS_ENABLE, Configs.Debug.crashlyticsEnable)
+            buildConfigBooleanField(Configs.BuildConfigKey.ANALYTIC_IS_ENABLE, Configs.Debug.analyticsEnable)
         }
     }
 
@@ -48,7 +48,7 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
+        jvmTarget = AppConfig.jvmTarget
         freeCompilerArgs = Configs.FreeCompilerArgs
     }
 
@@ -68,18 +68,9 @@ android.libraryVariants.all {
     }
 }
 
-fun BuildType.buildConfigStringField(name: String, value: String) {
-    this.buildConfigField("String", name, "\"$value\"")
-}
-
 dependencies {
     // Common
     addCommonDependencies()
     // Test
     addTestDependencies()
-}
-
-// Allow references to generated code
-kapt {
-    correctErrorTypes = true
 }

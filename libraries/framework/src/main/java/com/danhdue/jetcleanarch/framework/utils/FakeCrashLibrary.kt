@@ -1,4 +1,7 @@
-package com.danhdue.jetcleanarch
+package com.danhdue.jetcleanarch.framework.utils
+
+import com.danhdue.jetcleanarch.framework.extension.toJsonString
+import timber.log.Timber
 
 /** Not a real crash reporting library!  */
 class FakeCrashLibrary private constructor() {
@@ -8,15 +11,15 @@ class FakeCrashLibrary private constructor() {
 
     companion object {
         fun log(priority: Int, tag: String?, message: String?) {
-            // TODO add log entry to circular buffer.
+            Timber.d("log(priority: $priority, tag: $tag, message: $message)")
         }
 
         fun logWarning(t: Throwable?) {
-            // TODO report non-fatal warning.
+            Timber.w("logWarning(t: ${t.toJsonString()})")
         }
 
         fun logError(t: Throwable?) {
-            // TODO report non-fatal error.
+            Timber.e("logWarning(t: ${t.toJsonString()})")
         }
     }
 }

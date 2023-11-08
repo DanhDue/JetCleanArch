@@ -2,8 +2,9 @@ object Versions {
 
     const val GRADLE = "8.1.2"
     const val KOTLIN = "1.9.10"
-    const val KSP = "1.9.10-1.0.13"
+    const val KSP = "1.9.20-1.0.14"
     const val GOOGLE_SERVICE = "4.4.0"
+    const val GOOGLE_CRASHLYTICS = "2.9.9"
 
     const val kotlinVersion = "1.9.10"
     const val kotlinCoroutine = "1.7.3"
@@ -40,4 +41,11 @@ object Versions {
     const val navigation = "1.9.54"
     const val paging = "3.1.1"
     const val firebase = "32.5.0"
+    const val lifecycleViewmodelCompose = "2.4.1"
+    const val constraintLayout = "1.0.1"
+    const val lottieCompose = "6.1.0"
+    const val pagingCompose = "3.2.1"
+    const val coil = "2.5.0"
+    const val accompanist = "0.32.0"
+    const val accompanistInsets = "0.31.5-beta"
 }

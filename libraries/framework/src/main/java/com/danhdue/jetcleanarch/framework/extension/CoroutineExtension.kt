@@ -47,3 +47,27 @@ fun <T> Flow<T>.delayItem(timeMillis: Long, target: T) = mapLatest {
         it
     } else it
 }
+
+fun <T> Flow<T>.sampleAndKeepLast(periodMillis: Long): Flow<T> {
+    require(periodMillis > 0) { "Sample period should be positive" }
+    return channelFlow {
+        var isDone = false
+        val empty = Any()
+        var lastValue: Any? = empty
+        onEach { lastValue = it }
+            .onCompletion { isDone = true }
+            .launchIn(this)
+        while (!isDone) {
+            delay(periodMillis)
+            if (lastValue !== empty) {
+                @Suppress("UNCHECKED_CAST")
+                send(lastValue as T)
+                lastValue = empty
+            }
+        }
+        if (lastValue !== empty) {
+            @Suppress("UNCHECKED_CAST")
+            send(lastValue as T)
+        }
+    }
+}
