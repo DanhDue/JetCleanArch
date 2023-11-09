@@ -17,17 +17,18 @@ long application lifecycle management.
 Architecture
 ------------
 
-A well planned architecture is extremely important for an app to scale and all architectures have one common goal- to manage complexity of your app. This isn't something to be worried about in smaller apps however it may prove very useful when working on apps with longer development lifecycle and a bigger team.
+A well planned architecture is extremely important for an app to scale and all architectures have one common goal- to manage complexity of your app.
+This isn't something to be worried about in smaller apps however it may prove very useful when working on apps with longer development lifecycle and a bigger team.
 
-Clean architecture was proposed by [Robert C. Martin](https://en.wikipedia.org/wiki/Robert_C._Martin) in 2012 in the [Clean Code Blog](http://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) and it follow the SOLID principle.
+Clean architecture was proposed by [Robert C. Martin][35] in 2012 in the [Clean Code Blog][2] and it follow the SOLID principle.
 
 <p align="center"><img src="screenshots/clean_arch.jpeg" alt="Clean Architecture"></p>
 
 The circles represent different layers of your app. Note that:
 
-- The center circle is the most abstract, and the outer circle is the most concrete. This is called the [Abstraction Principle](https://en.wikipedia.org/wiki/Abstraction_principle_(computer_programming)). The Abstraction Principle specifies that inner circles should contain business logic, and outer circles should contain implementation details.
+- The center circle is the most abstract, and the outer circle is the most concrete. This is called the [Abstraction Principle][36]. The Abstraction Principle specifies that inner circles should contain business logic, and outer circles should contain implementation details.
 
-- Another principle of Clean Architecture is the [Dependency Inversion](https://en.wikipedia.org/wiki/Dependency_inversion_principle). This rule specifies that each circle can depend only on the nearest inward circle ie. low-level modules do not depend on high-level modules but the other way around.
+- Another principle of Clean Architecture is the [Dependency Inversion][37]. This rule specifies that each circle can depend only on the nearest inward circle ie. low-level modules do not depend on high-level modules but the other way around.
 
 <p align="center"><img src="screenshots/architecture.png" alt="Clean Architecture Diagram"></p>
 
@@ -41,15 +42,15 @@ Why Clean Architecture?
 S.O.L.I.D Principles
 ------------------------
 
-- [__Single Responsibility__](https://en.wikipedia.org/wiki/Single-responsibility_principle): Each software component should have only one reason to change – one responsibility.
+- [__Single Responsibility__][30]: Each software component should have only one reason to change – one responsibility.
 
-- [__Open-Closed__](https://en.wikipedia.org/wiki/Open%E2%80%93closed_principle#:~:text=In%20object%2Doriented%20programming%2C%20the,without%20modifying%20its%20source%20code.): You should be able to extend the behavior of a component, without breaking its usage, or modifying its extensions.
+- [__Open-Closed__][31]: You should be able to extend the behavior of a component, without breaking its usage, or modifying its extensions.
 
-- [__Liskov Substitution__](https://en.wikipedia.org/wiki/Liskov_substitution_principle): If you have a class of one type, and any subclasses of that class, you should be able to represent the base class usage with the subclass, without breaking the app.
+- [__Liskov Substitution__][32]: If you have a class of one type, and any subclasses of that class, you should be able to represent the base class usage with the subclass, without breaking the app.
 
-- [__Interface Segregation__](https://en.wikipedia.org/wiki/Interface_segregation_principle): It’s better to have many smaller interfaces than a large one, to prevent the class from implementing the methods that it doesn’t need.
+- [__Interface Segregation__][33]: It’s better to have many smaller interfaces than a large one, to prevent the class from implementing the methods that it doesn’t need.
 
-- [__Dependency Inversion__](https://en.wikipedia.org/wiki/Dependency_inversion_principle): Components should depend on abstractions rather than concrete implementations. Also higher level modules shouldn’t depend on lower level modules.
+- [__Dependency Inversion__][34]: Components should depend on abstractions rather than concrete implementations. Also higher level modules shouldn’t depend on lower level modules.
 
 Technical Information used in this project:
 -------------------------------------------
@@ -58,7 +59,7 @@ Technical Information used in this project:
 2. Architecture: [Clean Architecture][2] based on [Android Jetpack][0].  For more resources on learning Android development, visit the [Developer Guides](https://developer.android.com/guide/) at [developer.android.com](https://developer.android.com).
 3. Multiple Threads: [Kotlin Coroutine][14].
 4. Third Party Libraries: [Retrofit][25], [Hilt][22], [Firebase][24], [MockK][21], [etc][15],...
-5. Unit Test: [Android testing framework][3], [MockK][21], and [Robolectric][26]; Unit Test coverage Analysis using [JaCoCo][22].
+5. Unit Test: [Android testing framework][3], [MockK][21], and [Robolectric][26]; Unit Test coverage Analysis using [JaCoCo][22]; [etc][15],....
 6. [ScreenShots][16]
 
 Moreover, you can read more detail about some project components by clicking to links contained at [References][17] part.
@@ -71,25 +72,53 @@ Libraries Used
   * [AppCompat][1] - Degrade gracefully on older versions of Android.
   * [Android KTX][2] - Write more concise, idiomatic Kotlin code.
   * [Test][3] - An Android testing framework for unit and runtime UI tests.
+  * [Lifecycle][38] - Perform actions in response to a change in the lifecycle status of another component, such as activities and fragments.
+  * [ViewModel][39] - Designed to store and manage UI-related data in a lifecycle conscious way. The ViewModel class allows data to survive configuration changes such as screen rotations.
+  * [Room][40] - Provides an abstraction layer over SQLite used for offline data caching.
+  * [Paging3][41] - The Paging Library makes it easier for you to load data gradually and gracefully within your app's [RecyclerView][42].
   * ....
 
 * [Compose][4]
   * [Material][7] - Build Jetpack Compose UIs with ready to use Material Design Components.
   * [Foundation][8] - Write Jetpack Compose applications with ready to use building blocks and extend foundation to build your own design system pieces.
+  * [UI][43] - Fundamental components of compose UI needed to interact with the device, including layout, drawing, and input.
+  * [ConstraintLayout][44] - ConstraintLayout-compose 1.0 provides ConstraintLayout functionalities in Jetpack Compose.
+  * [Lottie][45] - Lottie is a mobile library for Android and iOS that parses Adobe After Effects animations exported as json with Bodymovin and renders them natively on mobile!
+  * [Coil][46] - An image loading library for Android backed by Kotlin Coroutines.
+  * [Material Design][55] - Build awesome beautiful UIs.
   * ....
 
 * [Accompanist][5] - a group of libraries that aim to supplement Jetpack Compose with features that are commonly required by developers but not yet available.
   * [SwipeRefresh][9] - A library which provides a layout which provides the swipe-to-refresh UX pattern, similar to Android's SwipeRefreshLayout.
+  * [Systemuicontroller][47] - System UI Controller provides easy-to-use utilities for updating the System UI bar colors within Jetpack Compose.
+  * [Insets][48] - Insets for Jetpack Compose takes a lot of the ideas which drove Insetter for views, and applies them for use in composables.
+  * [Placeholder][49] - A library which provides a modifier for display 'placeholder' UI while content is loading.
+  * [Navigation][50] - A library which provides Compose Material support for Jetpack Navigation Compose. This features composable bottom sheet destinations.
   * ....
 
 * Third party
   * [Kotlin Coroutines][15] for managing background threads with simplified code and reducing needs for callbacks
-  * [MockK][21] for unit test mocking. That provides DSL to mock behavior. Built from zero to fit Kotlin language.
-    Supports named parameters, object mocks, coroutines and extension function mocking.
+  * [Flow][54] - Flows are built on top of coroutines and can provide multiple values. A flow is conceptually a stream of data that can be computed asynchronously.
+  * [Dagger Hilt][51] - Dependency Injection library.
+  * [Gradle Kotlin DSL][59] - makes it easy to manage dependency all module that we have
+  * [Google-KSP][52] - Kotlin Symbol Processing API
+  * [Retrofit][25] for Networking.
+  * [OkHttp-Logging-Interceptor][53] - Logs HTTP request and response data.
+  * [Moshi][57] - A modern JSON library for Kotlin and Java.
+  * [Chucker][58] - An HTTP inspector for Android & OkHTTP (like Charles but on device).
   * [JaCoCo][22] for Unit Test Coverage Analysis.
   * [Firebase][24] for Crashlytics, Analytics, Push Notification,....
-  * [Retrofit][25] for Networking.
+  * [Timber][56] - A logger with a small, extensible API which provides utility on top of Android's normal Log class.
   * And a few other libraries ....
+
+* Testing
+  * [MockK][21] for unit test mocking. That provides DSL to mock behavior. Built from zero to fit Kotlin language.
+    Supports named parameters, object mocks, coroutines and extension function mocking.
+  * [Coroutine-Test][60] - Provides testing utilities for effectively testing coroutines.
+  * [Robolectric][61] - Running tests on an Android emulator or device is slow! Building, deploying, and launching the app often takes a minute or more. That’s no way to do TDD. There must be a better way.
+  * [Truth][62] - Truth makes your test assertions and failure messages more readable.
+  * [Turbine][63] - Turbine is a small testing library for kotlinx.coroutines Flow.
+  * .....
 
 Plugin
 --------------
@@ -132,6 +161,40 @@ Code Analyze Tools
 [27]: https://viblo.asia/p/calbacks-trong-ung-dung-android-RnB5pk87lPG
 [28]: https://viblo.asia/p/change-retrofits-base-url-at-runtime-ORNZqDLMK0n
 [29]: https://viblo.asia/p/setup-jacoco-for-an-android-multiple-module-projectclean-architect-project-4dbZNNoqZYM
+[30]: https://en.wikipedia.org/wiki/Single-responsibility_principle
+[31]: https://en.wikipedia.org/wiki/Open%E2%80%93closed_principle#:~:text=In%20object%2Doriented%20programming%2C%20the,without%20modifying%20its%20source%20code
+[32]: https://en.wikipedia.org/wiki/Liskov_substitution_principle
+[33]: https://en.wikipedia.org/wiki/Interface_segregation_principle
+[34]: https://en.wikipedia.org/wiki/Dependency_inversion_principle
+[35]: https://en.wikipedia.org/wiki/Robert_C._Martin
+[36]: https://en.wikipedia.org/wiki/Abstraction_principle_(computer_programming)
+[37]: https://en.wikipedia.org/wiki/Dependency_inversion_principle
+[38]: https://developer.android.com/topic/libraries/architecture/lifecycle
+[39]: https://developer.android.com/topic/libraries/architecture/viewmodel
+[40]: https://developer.android.com/training/data-storage/room
+[41]: https://developer.android.com/topic/libraries/architecture/paging/v3-overview
+[42]: https://developer.android.com/reference/androidx/recyclerview/widget/RecyclerView
+[43]: https://developer.android.com/jetpack/androidx/releases/compose-ui
+[44]: https://developer.android.com/jetpack/androidx/releases/constraintlayout
+[45]: https://github.com/airbnb/lottie/blob/master/android-compose.md
+[46]: https://coil-kt.github.io/coil/compose
+[47]: https://google.github.io/accompanist/systemuicontroller
+[48]: https://google.github.io/accompanist/insets
+[49]: https://google.github.io/accompanist/placeholder
+[50]: https://google.github.io/accompanist/navigation-material
+[51]: https://dagger.dev/hilt
+[52]: https://github.com/google/ksp
+[53]: https://github.com/square/okhttp/blob/master/okhttp-logging-interceptor/README.md
+[54]: https://developer.android.com/kotlin/flow
+[55]: https://material.io/develop/android/docs/getting-started
+[56]: https://github.com/JakeWharton/timber
+[57]: https://github.com/square/moshi
+[58]: https://github.com/ChuckerTeam/chucker
+[59]: https://gradle.org/kotlin
+[60]: https://github.com/Kotlin/kotlinx.coroutines/tree/master/kotlinx-coroutines-test
+[61]: http://robolectric.org
+[62]: https://github.com/google/truth
+[63]: https://github.com/cashapp/turbine
 
 Screenshots
 -----------
