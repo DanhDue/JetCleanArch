@@ -1,11 +1,61 @@
 package com.danhdue.jetcleanarch.splash
 
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Build
 import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.viewModels
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import com.danhdue.jetcleanarch.framework.extension.launchActivity
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
-class StartActivity : AppCompatActivity() {
+@AndroidEntryPoint
+class StartActivity : ComponentActivity() {
+
+    private val viewModel by viewModels<StartViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            val splashScreen = installSplashScreen()
+            splashScreen.setKeepOnScreenCondition { true }
+        }
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_start)
+
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.CREATED) {
+                viewModel.startWelcome.collectLatest {
+                    delay(WELCOME_DELAY_TIME)
+                    if (it) navigateWelcomeActivity() else navigateMainActivity()
+                }
+
+            }
+        }
+    }
+
+    private fun navigateMainActivity() {
+        launchActivity(
+            packageName = packageName,
+            className = "com.danhdue.jetcleanarch.MainActivity"
+        ).also {
+            finish()
+        }
+    }
+
+    private fun navigateWelcomeActivity() {
+        launchActivity(
+            packageName = packageName,
+            className = "com.danhdue.jetcleanarch.features.welcome.WelcomeActivity"
+        ).also {
+            finish()
+        }
+    }
+
+    companion object {
+        const val WELCOME_DELAY_TIME = 3000L
     }
 }

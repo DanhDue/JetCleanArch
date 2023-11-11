@@ -4,6 +4,7 @@ import AppConfig
 import Configs
 import extensions.TEST
 import extensions.addCommonDependencies
+import extensions.addNavigationDependencies
 import extensions.buildConfigBooleanField
 import extensions.buildConfigStringField
 
@@ -71,6 +72,9 @@ android.libraryVariants.all {
 dependencies {
     // Common
     addCommonDependencies()
+
+    // compose navigation
+    addNavigationDependencies()
     // Test
     TEST
 }

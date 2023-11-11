@@ -5,6 +5,7 @@ import extensions.addDebugBuildTypeConfigs
 import extensions.addFirebaseDependencies
 import extensions.addHiltDependencies
 import extensions.addModuleDependencies
+import extensions.addNavigationDependencies
 import extensions.addNetworkDependencies
 import extensions.addReleaseBuildTypeConfigs
 import extensions.addStorageDependencies
@@ -162,13 +163,15 @@ dependencies {
 
     addComposeDependencies()
 
+    addNavigationDependencies()
+
     addHiltDependencies()
 
     addNetworkDependencies()
 
     addWorkManagerDependencies()
 
-    TEST
-
     addFirebaseDependencies()
+
+    TEST
 }

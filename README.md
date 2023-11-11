@@ -4,7 +4,7 @@ Jet CleanArch - A modern sample base code.
 This project uses many of the popular libraries, plugins, and tools of the Android ecosystem.
 It is based on [Android Jetpack][0], [Kotlin][1], [Clean Architecture][2] & [Dependency Injection][3] using [Hilt][4].
 
-Introduction
+I. Introduction
 ------------
 
 This project is a sample base code that implements the Clean Architecture and uses Android Jetpack. It presents modern approach to [Android](https://www.android.com/) application development using [Kotlin](https://kotlinlang.org/) and latest tech-stacks.
@@ -14,7 +14,7 @@ application architecture that is modular, scalable, maintainable and testable. T
 has all of these small details that will set the rock-solid foundation of the larger app suitable for bigger teams and
 long application lifecycle management.
 
-Architecture
+II. Architecture
 ------------
 
 A well planned architecture is extremely important for an app to scale and all architectures have one common goal- to manage complexity of your app.
@@ -32,14 +32,14 @@ The circles represent different layers of your app. Note that:
 
 <p align="center"><img src="screenshots/architecture.png" alt="Clean Architecture Diagram"></p>
 
-Why Clean Architecture?
-------------------------
+#### Why Clean Architecture?
+----------------------------
 
 - ```Loose coupling between the code``` - The code can easily be modified without affecting any or a large part of the app's codebase thus easier to scale the application later on.
 - Easier to ```test``` code.
 - ```Separation of Concern``` - Different modules have specific responsibilities making it easier for modification and maintenance.
 
-S.O.L.I.D Principles
+#### S.O.L.I.D Principles
 ------------------------
 
 - [__Single Responsibility__][30]: Each software component should have only one reason to change – one responsibility.
@@ -52,7 +52,61 @@ S.O.L.I.D Principles
 
 - [__Dependency Inversion__][34]: Components should depend on abstractions rather than concrete implementations. Also higher level modules shouldn’t depend on lower level modules.
 
-Technical Information used in this project:
+
+III. Project Structure:
+------------------
+<p align="center"><img src="screenshots/project_structure.png" alt="Clean Architecture Diagram"></p>
+
+#### 1. buildSrc
+The ```buildSrc``` layer is responsible for dependency management. It control and manage all dependencies in one place with Kotlin.
+
+#### 2. Common
+The ```common``` layer is responsible for common properties. It contains the implementations of the resources files, themes and components declared in the common layer.
+
+- __component__: This is responsible for common view components that using app.
+
+- __provider__: Defines navigation, resource and theme provider.
+
+- __theme__: Defines themes, colors, fonts and resource files.
+
+#### 3. Libraries
+The ```libraries``` layer is responsible for base structure.
+
+- __framework__: Contains different utilities that can be used by the different modules and base structures.
+
+- __jetframework__: Contains different utilities that can be used by the different modules and base structures only for Jet Compose.
+
+- __testing__: Contains the definitions of the test utilities.
+
+#### 4. Data
+The ```data``` layer is responsible for selecting the proper data source for the domain layer. It contains the implementations of the repositories declared in the domain layer.
+
+Components of data layer includes:
+* __model__
+
+  * __dto__: Defines dto of ui model, also perform data transformation between ```domain```, ```response``` and ```entity``` models.
+
+  * __local__: Defines the schema of SQLite database.
+
+  * __remote__: Defines POJO of network responses.
+
+* __local__: This is responsible for performing caching operations using [Room](https://developer.android.com/training/data-storage/room).
+
+* __remote__: This is responsible for performing network operations eg. defining API endpoints using [Retrofit](https://square.github.io/retrofit/).
+
+* __repository__: Responsible for exposing data to the domain layer.
+
+#### 5. Domain
+This is the core layer of the application. The ```domain``` layer is independent of any other layers thus ] domain business logic can be independent from other layers.This means that changes in other layers will have no effect on domain layer eg.  screen UI (presentation layer) or changing database (data layer) will not result in any code change withing domain layer.
+
+Components of domain layer include:
+- __usecase__: They enclose a single action, like getting data from a database or posting to a service. They use the repositories to resolve the action they are supposed to do. They usually override the operator ```invoke``` , so they can be called as a function.
+
+#### 6. Presentation
+The ```features``` layer contains components involved in showing information to the user. The main part of this layer are the views(activity, compose) and ViewModels.
+
+
+IV. Technical Information used in this project:
 -------------------------------------------
 
 1. Programming Language: [Android Kotlin][1].
@@ -64,7 +118,7 @@ Technical Information used in this project:
 
 Moreover, you can read more detail about some project components by clicking to links contained at [References][17] part.
 
-Libraries Used
+V. Libraries Used
 --------------
 
 * [Android Jetpack][0] - Components for core system capabilities, Kotlin extensions and support for
@@ -120,15 +174,36 @@ Libraries Used
   * [Turbine][63] - Turbine is a small testing library for kotlinx.coroutines Flow.
   * .....
 
-Plugin
---------------
+#### Plugin
 * [Check-Dependency-Versions][10] - make easy to determine which dependencies have updates.
 
-Code Analyze Tools
---------------
+#### Code Analyze Tools
 * [Ktlint][11] - A ktlint gradle plugin. Provides a convenient wrapper plugin over the ktlint project.
 * [Spotless][12] - It’s pretty useful in automating fixes for pretty simple (and common) formatting mistakes as in spaces, newlines, removing unnecessary imports, etc.
 * [Detekt][13] - Static code analysis for Kotlin.
+
+VI. Screenshots
+-----------
+1. Coverage Overview.
+
+![Coverage Overview](screenshots/unit_tests/coverage_overview.png "Coverage Overview.")
+
+2. Unit Test Detail for a ViewModel.
+
+![Unit Test Detail for ViewModel](screenshots/unit_tests/view_model_detail.png "Unit Test Detail for ViewModel.")
+
+3. Unit Test Detail for a Repository
+
+![Unit Test Detail for Repository](screenshots/unit_tests/repository_detail.png "Unit Test Detail for Repository.")
+
+VII. References
+----------
+* [setup Jacoco for an Android Multiple Module Project.][29]
+* [Change Android Retrofit's Base Url at runtime.][28]
+* [Change Android Brightness.][18]
+* [Play Youtube videos on Androids.][19]
+* [ Setup Jacoco for Android Project.][20]
+* [Callbacks in Android Application.][27]
 
 [0]: https://developer.android.com/jetpack/components
 [1]: https://kotlinlang.org/
@@ -195,29 +270,6 @@ Code Analyze Tools
 [61]: http://robolectric.org
 [62]: https://github.com/google/truth
 [63]: https://github.com/cashapp/turbine
-
-Screenshots
------------
-1. Coverage Overview.
-
-![Coverage Overview](screenshots/unit_tests/coverage_overview.png "Coverage Overview.")
-
-2. Unit Test Detail for a ViewModel.
-
-![Unit Test Detail for ViewModel](screenshots/unit_tests/view_model_detail.png "Unit Test Detail for ViewModel.")
-
-3. Unit Test Detail for a Repository
-
-![Unit Test Detail for Repository](screenshots/unit_tests/repository_detail.png "Unit Test Detail for Repository.")
-
-References
-----------
-* [setup Jacoco for an Android Multiple Module Project.][29]
-* [Change Android Retrofit's Base Url at runtime.][28]
-* [Change Android Brightness.][18]
-* [Play Youtube videos on Androids.][19]
-* [ Setup Jacoco for Android Project.][20]
-* [Callbacks in Android Application.][27]
 
 License
 -------

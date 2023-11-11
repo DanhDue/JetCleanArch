@@ -239,6 +239,9 @@ fun DependencyHandler.addComposeDependencies() {
     implementation(Deps.Compose.iconsCore)
     implementation(Deps.Compose.iconsExtended)
 
+    // hilt compose navigation
+    implementation(Deps.Hilt.navigationCompose)
+
     implementation(Deps.Compose.activityCompose)
     implementation(Deps.Compose.lifecycleViewmodelCompose)
     implementation(Deps.Compose.constraintLayout)
@@ -302,6 +305,9 @@ fun DependencyHandler.addModuleDependencies() {
     implementation(project(mapOf("path" to ":libraries:framework")))
     implementation(project(mapOf("path" to ":libraries:jetframework")))
     implementation(project(mapOf("path" to ":libraries:testutils")))
+
+    implementation(project(mapOf("path" to ":features:splash")))
+    implementation(project(mapOf("path" to ":features:welcome")))
 }
 
 val DependencyHandler.FRAMEWORK
@@ -336,3 +342,9 @@ val DependencyHandler.PROVIDER
 
 val DependencyHandler.DOMAIN
     get() = implementation(project(mapOf("path" to ":domain")))
+
+val DependencyHandler.FEATURE_SPLASH
+    get() = implementation(project(mapOf("path" to ":features:splash")))
+
+val DependencyHandler.FEATURE_WELCOME
+    get() = implementation(project(mapOf("path" to ":features:welcome")))
