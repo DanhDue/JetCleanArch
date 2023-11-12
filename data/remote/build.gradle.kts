@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "com.danhdue.jetcleanarch.remote"
+    namespace = "com.danhdue.jetcleanarch.data.remote"
 }
 
 dependencies {

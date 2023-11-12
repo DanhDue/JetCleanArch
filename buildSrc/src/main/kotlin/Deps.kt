@@ -1,5 +1,6 @@
-object Deps {
+const val PATH = "path"
 
+object Deps {
     const val ANDROID_GRADLE_PLUGIN_ID = "com.android.application"
     const val ANDROID_LIBRARY_GRADLE_PLUGIN_ID = "com.android.library"
     const val ANDROID_GRADLE_PLUGIN = "com.android.tools.build:gradle:${Versions.GRADLE}"
@@ -124,6 +125,7 @@ object Deps {
     object Test {
         const val junit =  "junit:junit:${Versions.junit}"
         const val junitExt = "androidx.test.ext:junit:${Versions.junitExt}"
+        const val junitKtx = "androidx.test.ext:junit-ktx:${Versions.junitKxt}"
         const val uiTestJunit4 = "androidx.compose.ui:ui-test-junit4"
         const val uiTooling = "androidx.compose.ui:ui-tooling"
         const val uiTestManifest = "androidx.compose.ui:ui-test-manifest"
@@ -142,4 +144,25 @@ object Deps {
 
 object Modules {
     const val buildSrc = ":buildSrc"
+
+    const val dataModel = ":data:model"
+    const val dataLocal = ":data:local"
+    const val dataRemote = ":data:remote"
+    const val dataRepository = ":data:repository"
+
+    const val domain = ":domain"
+
+    const val commonTheme = ":common:theme"
+    const val commonComponents = ":common:components"
+    const val commonProviders = ":common:providers"
+
+    const val librariesFramework = ":libraries:framework"
+    const val librariesJetFramework = ":libraries:jetframework"
+    const val librariesTestUtils = ":libraries:testutils"
+
+    const val featureSplash = ":presentation:splash"
+    const val featureWelcome = ":presentation:welcome"
+    const val featureDashboard = ":presentation:dashboard"
+    const val featureHome = ":presentation:home"
+    const val featureSettings = ":presentation:settings"
 }

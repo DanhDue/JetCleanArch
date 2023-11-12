@@ -4,6 +4,7 @@ import AppConfig
 import EnvConfigs
 import extensions.TEST
 import extensions.addCommonDependencies
+import extensions.addTestDependencies
 import extensions.buildConfigBooleanField
 import extensions.buildConfigStringField
 
@@ -81,5 +82,6 @@ dependencies {
     // Common
     addCommonDependencies()
     // Test
+    addTestDependencies()
     TEST
 }

@@ -1,4 +1,4 @@
-package com.danhdue.jetcleanarch.testutils
+package com.danhdue.jetcleanarch.libraries.testutils
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory

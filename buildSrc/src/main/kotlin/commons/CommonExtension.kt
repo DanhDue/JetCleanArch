@@ -46,6 +46,20 @@ fun CommonExtension<*, *, *, *, *>.addComposeConfig() {
         resources.excludes.apply {
             add("META-INF/AL2.0")
             add("META-INF/LGPL2.1")
+            add("/META-INF/{AL2.0,LGPL2.1}")
+            add("META-INF/DEPENDENCIES")
+            add("META-INF/LICENSE")
+            add("META-INF/LICENSE.txt")
+            add("META-INF/license.txt")
+            add("META-INF/LICENSE.md")
+            add("META-INF/LICENSE-notice.md")
+            add("META-INF/NOTICE")
+            add("META-INF/NOTICE.txt")
+            add("META-INF/notice.txt")
+            add("META-INF/ASL2.0")
+            add("META-INF/*.kotlin_module")
+            add("META-INF/gradle/incremental.annotation.processors")
+            add("/META-INF/{AL2.0,LGPL2.1,gradle-plugins}")
             jniLibs.pickFirsts.add("**/*.so")
         }
     }
@@ -68,5 +82,27 @@ fun CommonExtension<*, *, *, *, *>.addDefaultConfig() {
 
     testOptions {
         unitTests.isReturnDefaultValues = true
+    }
+
+    packaging {
+        resources.excludes.apply {
+            add("META-INF/AL2.0")
+            add("META-INF/LGPL2.1")
+            add("/META-INF/{AL2.0,LGPL2.1}")
+            add("META-INF/DEPENDENCIES")
+            add("META-INF/LICENSE")
+            add("META-INF/LICENSE.txt")
+            add("META-INF/license.txt")
+            add("META-INF/LICENSE.md")
+            add("META-INF/LICENSE-notice.md")
+            add("META-INF/NOTICE")
+            add("META-INF/NOTICE.txt")
+            add("META-INF/notice.txt")
+            add("META-INF/ASL2.0")
+            add("META-INF/*.kotlin_module")
+            add("META-INF/gradle/incremental.annotation.processors")
+            add("/META-INF/{AL2.0,LGPL2.1,gradle-plugins}")
+            jniLibs.pickFirsts.add("**/*.so")
+        }
     }
 }

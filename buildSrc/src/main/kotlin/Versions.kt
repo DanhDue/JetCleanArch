@@ -15,6 +15,7 @@ object Versions {
     const val composeBOM = "2023.10.01"
     const val junit = "4.13.2"
     const val junitExt = "1.1.5"
+    const val junitKxt = "1.1.5"
     const val espressoCore = "3.5.1"
     const val uiTestJunit4 = "2.6.2"
     const val mockito = "5.6.0"

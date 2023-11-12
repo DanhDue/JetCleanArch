@@ -10,7 +10,7 @@ plugins {
 }
 
 android {
-    namespace = "com.danhdue.jetcleanarch.testutils"
+    namespace = "com.danhdue.jetcleanarch.libraries.testutils"
 
     addDefaultConfig()
 

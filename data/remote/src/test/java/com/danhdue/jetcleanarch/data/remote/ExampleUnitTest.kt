@@ -1,4 +1,4 @@
-package com.danhdue.jetcleanarch.testutils
+package com.danhdue.jetcleanarch.data.remote
 
 import org.junit.Test
 

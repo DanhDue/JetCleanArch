@@ -1,4 +1,4 @@
-package com.danhdue.jetcleanarch.testutils
+package com.danhdue.jetcleanarch.libraries.testutils
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.*

@@ -1,15 +1,15 @@
 package extensions
 
-import EnvConfigs
 import Deps
+import EnvConfigs
+import Modules
+import PATH
 import com.android.build.api.dsl.BuildType
 import org.gradle.api.Action
 import org.gradle.api.artifacts.Dependency
 import org.gradle.api.artifacts.dsl.DependencyHandler
 import org.gradle.kotlin.dsl.add
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
-
-//import com.android.build.gradle.internal.dsl.BuildType
 
 /**
  * Adds a dependency to the `releaseImplementation` configuration.
@@ -202,6 +202,7 @@ fun DependencyHandler.addOkhttpDependencies() {
 fun DependencyHandler.addTestDependencies() {
     api(Deps.Test.junit)
     api(Deps.Test.junitExt)
+    api(Deps.Test.junitKtx)
     api(Deps.espressoCore)
     api(Deps.Kotlin.coroutineTest)
     api(Deps.Test.robolectric)
@@ -291,72 +292,73 @@ fun DependencyHandler.addFirebaseDependencies() {
 }
 
 fun DependencyHandler.addModuleDependencies() {
-    implementation(project(mapOf("path" to ":domain")))
 
-    implementation(project(mapOf("path" to ":data:model")))
-    implementation(project(mapOf("path" to ":data:local")))
-    implementation(project(mapOf("path" to ":data:remote")))
-    implementation(project(mapOf("path" to ":data:repository")))
+    implementation(project(mapOf(PATH to Modules.commonTheme)))
+    implementation(project(mapOf(PATH to Modules.commonComponents)))
+    implementation(project(mapOf(PATH to Modules.commonProviders)))
 
-    implementation(project(mapOf("path" to ":common:theme")))
-    implementation(project(mapOf("path" to ":common:components")))
-    implementation(project(mapOf("path" to ":common:providers")))
+    implementation(project(mapOf(PATH to Modules.librariesFramework)))
+    implementation(project(mapOf(PATH to Modules.librariesJetFramework)))
+    implementation(project(mapOf(PATH to Modules.librariesTestUtils)))
 
-    implementation(project(mapOf("path" to ":libraries:framework")))
-    implementation(project(mapOf("path" to ":libraries:jetframework")))
-    implementation(project(mapOf("path" to ":libraries:testutils")))
+    implementation(project(mapOf(PATH to Modules.dataModel)))
+    implementation(project(mapOf(PATH to Modules.dataLocal)))
+    implementation(project(mapOf(PATH to Modules.dataRemote)))
+    implementation(project(mapOf(PATH to Modules.dataRepository)))
 
-    implementation(project(mapOf("path" to ":presentation:splash")))
-    implementation(project(mapOf("path" to ":presentation:welcome")))
-    implementation(project(mapOf("path" to ":presentation:dashboard")))
-    implementation(project(mapOf("path" to ":presentation:home")))
-    implementation(project(mapOf("path" to ":presentation:settings")))
+    implementation(project(mapOf(PATH to Modules.domain)))
+
+    implementation(project(mapOf(PATH to Modules.featureSplash)))
+    implementation(project(mapOf(PATH to Modules.featureWelcome)))
+    implementation(project(mapOf(PATH to Modules.featureDashboard)))
+    implementation(project(mapOf(PATH to Modules.featureHome)))
+    implementation(project(mapOf(PATH to Modules.featureSettings)))
 }
 
-val DependencyHandler.FRAMEWORK
-    get() = implementation(project(mapOf("path" to ":libraries:framework")))
-
-val DependencyHandler.JETFRAMEWORK
-    get() = implementation(project(mapOf("path" to ":libraries:jetframework")))
-
-val DependencyHandler.TEST
-    get() = testImplementation(project(mapOf("path" to ":libraries:testutils")))
-
-val DependencyHandler.MODEL
-    get() = implementation(project(mapOf("path" to ":data:model")))
-
-val DependencyHandler.LOCAL
-    get() = implementation(project(mapOf("path" to ":data:local")))
-
-val DependencyHandler.REMOTE
-    get() = implementation(project(mapOf("path" to ":data:remote")))
-
-val DependencyHandler.REPOSITORY
-    get() = implementation(project(mapOf("path" to ":data:repository")))
-
 val DependencyHandler.THEME
-    get() = implementation(project(mapOf("path" to ":common:theme")))
+    get() = implementation(project(mapOf(PATH to Modules.commonTheme)))
 
 val DependencyHandler.COMPONENT
-    get() = implementation(project(mapOf("path" to ":common:components")))
+    get() = implementation(project(mapOf(PATH to Modules.commonComponents)))
 
 val DependencyHandler.PROVIDER
-    get() = implementation(project(mapOf("path" to ":common:providers")))
+    get() = implementation(project(mapOf(PATH to Modules.commonProviders)))
+
+val DependencyHandler.FRAMEWORK
+    get() = implementation(project(mapOf(PATH to Modules.librariesFramework)))
+
+val DependencyHandler.JETFRAMEWORK
+    get() = implementation(project(mapOf(PATH to Modules.librariesJetFramework)))
+
+val DependencyHandler.TEST
+    get() = testImplementation(project(mapOf(PATH to Modules.librariesTestUtils)))
+
+val DependencyHandler.MODEL
+    get() = implementation(project(mapOf(PATH to Modules.dataModel)))
+
+val DependencyHandler.LOCAL
+    get() = implementation(project(mapOf(PATH to Modules.dataLocal)))
+
+val DependencyHandler.REMOTE
+    get() = implementation(project(mapOf(PATH to Modules.dataRemote)))
+
+val DependencyHandler.REPOSITORY
+    get() = implementation(project(mapOf(PATH to Modules.dataRepository)))
 
 val DependencyHandler.DOMAIN
-    get() = implementation(project(mapOf("path" to ":domain")))
+    get() = implementation(project(mapOf(PATH to Modules.domain)))
 
 val DependencyHandler.FEATURE_SPLASH
-    get() = implementation(project(mapOf("path" to ":presentation:splash")))
+    get() = implementation(project(mapOf(PATH to Modules.featureSplash)))
 
 val DependencyHandler.FEATURE_WELCOME
-    get() = implementation(project(mapOf("path" to ":presentation:welcome")))
+    get() = implementation(project(mapOf(PATH to Modules.featureWelcome)))
 
 val DependencyHandler.FEATURE_DASHBOARD
-    get() = implementation(project(mapOf("path" to ":presentation:dashboard")))
+    get() = implementation(project(mapOf(PATH to Modules.featureDashboard)))
 
 val DependencyHandler.FEATURE_HOME
-    get() = implementation(project(mapOf("path" to ":presentation:home")))
+    get() = implementation(project(mapOf(PATH to Modules.featureHome)))
 
 val DependencyHandler.FEATURE_SETTINGS
-    get() = implementation(project(mapOf("path" to ":presentation:settings")))
+    get() = implementation(project(mapOf(PATH to Modules.featureSettings)))
