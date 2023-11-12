@@ -1,12 +1,12 @@
 object Versions {
 
     const val GRADLE = "8.1.2"
-    const val KOTLIN = "1.9.10"
+    const val KOTLIN = "1.9.20"
     const val KSP = "1.9.20-1.0.14"
     const val GOOGLE_SERVICE = "4.4.0"
     const val GOOGLE_CRASHLYTICS = "2.9.9"
 
-    const val kotlinVersion = "1.9.10"
+    const val kotlinVersion = "1.9.20"
     const val kotlinCoroutine = "1.7.3"
     const val coreKtx = "1.8.0"
     const val lifecycleRuntimeKtx = "2.6.2"
@@ -38,7 +38,8 @@ object Versions {
     const val chucker = "4.0.0"
     const val multidex = "2.0.1"
     const val splashScreen = "1.0.1"
-    const val navigation = "1.9.54"
+    const val navigation = "2.7.5"
+    const val destinations = "1.9.54"
     const val paging = "3.1.1"
     const val firebase = "32.5.0"
     const val lifecycleViewmodelCompose = "2.4.1"

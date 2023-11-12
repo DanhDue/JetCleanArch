@@ -37,7 +37,7 @@ object GlobalDeps {
 
 object GlobalVersions {
     const val GRADLE = "8.1.2"
-    const val KOTLIN = "1.9.10"
+    const val KOTLIN = "1.9.20"
     const val KSP = "1.9.20-1.0.14"
     const val HILT = "2.48.1"
     const val GOOGLE_SERVICE = "4.3.10"

@@ -1,6 +1,6 @@
 package extensions
 
-import Configs
+import EnvConfigs
 import Deps
 import com.android.build.api.dsl.BuildType
 import org.gradle.api.Action
@@ -151,8 +151,8 @@ fun com.android.build.gradle.LibraryExtension.kotlinOptions(configure: Action<Ko
 fun BuildType.addDebugBuildTypeConfigs() {
     enableUnitTestCoverage = false
     enableAndroidTestCoverage = false
-    manifestPlaceholders[Configs.BuildConfigKey.crashlyticsEnableKey] = false
-    manifestPlaceholders[Configs.BuildConfigKey.analyticsEnableKey] = false
+    manifestPlaceholders[EnvConfigs.BuildConfigKey.crashlyticsEnableKey] = false
+    manifestPlaceholders[EnvConfigs.BuildConfigKey.analyticsEnableKey] = false
 }
 
 fun BuildType.addReleaseBuildTypeConfigs() {
@@ -160,8 +160,8 @@ fun BuildType.addReleaseBuildTypeConfigs() {
     isShrinkResources = true
     enableUnitTestCoverage = false
     enableAndroidTestCoverage = false
-    manifestPlaceholders[Configs.BuildConfigKey.crashlyticsEnableKey] = true
-    manifestPlaceholders[Configs.BuildConfigKey.analyticsEnableKey] = true
+    manifestPlaceholders[EnvConfigs.BuildConfigKey.crashlyticsEnableKey] = true
+    manifestPlaceholders[EnvConfigs.BuildConfigKey.analyticsEnableKey] = true
 }
 
 fun DependencyHandler.addCommonDependencies() {
@@ -308,6 +308,9 @@ fun DependencyHandler.addModuleDependencies() {
 
     implementation(project(mapOf("path" to ":features:splash")))
     implementation(project(mapOf("path" to ":features:welcome")))
+    implementation(project(mapOf("path" to ":features:dashboard")))
+    implementation(project(mapOf("path" to ":features:home")))
+    implementation(project(mapOf("path" to ":features:settings")))
 }
 
 val DependencyHandler.FRAMEWORK
@@ -348,3 +351,12 @@ val DependencyHandler.FEATURE_SPLASH
 
 val DependencyHandler.FEATURE_WELCOME
     get() = implementation(project(mapOf("path" to ":features:welcome")))
+
+val DependencyHandler.FEATURE_DASHBOARD
+    get() = implementation(project(mapOf("path" to ":features:dashboard")))
+
+val DependencyHandler.FEATURE_HOME
+    get() = implementation(project(mapOf("path" to ":features:home")))
+
+val DependencyHandler.FEATURE_SETTINGS
+    get() = implementation(project(mapOf("path" to ":features:settings")))

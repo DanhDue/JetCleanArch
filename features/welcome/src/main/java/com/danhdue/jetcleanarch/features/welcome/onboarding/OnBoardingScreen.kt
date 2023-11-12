@@ -77,7 +77,7 @@ fun OnBoardingScreen(viewModel: OnBoardingViewModel = hiltViewModel()) {
             context.getActivity()?.run {
                 launchActivity(
                     packageName = context.packageName,
-                    className = "com.danhdue.jetcleanarch.MainActivity"
+                    className = "com.danhdue.jetcleanarch.features.dashboard.DashboardActivity"
                 ).also {
                     finish()
                 }

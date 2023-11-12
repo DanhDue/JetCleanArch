@@ -61,9 +61,9 @@ object Deps {
 
     object Navigation {
         const val navigation = "androidx.navigation:navigation-compose:${Versions.navigation}"
-        const val destCore = "io.github.raamcosta.compose-destinations:core:${Versions.navigation}"
-        const val destCoreKsp = "io.github.raamcosta.compose-destinations:ksp:${Versions.navigation}"
-        const val destAnimation = "io.github.raamcosta.compose-destinations:animations-core:${Versions.navigation}"
+        const val destCore = "io.github.raamcosta.compose-destinations:core:${Versions.destinations}"
+        const val destCoreKsp = "io.github.raamcosta.compose-destinations:ksp:${Versions.destinations}"
+        const val destAnimation = "io.github.raamcosta.compose-destinations:animations-core:${Versions.destinations}"
     }
 
     object WorkManager {

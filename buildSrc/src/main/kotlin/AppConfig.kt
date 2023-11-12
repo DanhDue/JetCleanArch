@@ -1,3 +1,5 @@
+import org.gradle.api.JavaVersion
+
 object AppConfig {
     const val namespace = "com.danhdue.jetcleanarch"
     const val compileSdk = 34
@@ -12,5 +14,8 @@ object AppConfig {
     const val proguardOptimizedFileName = "proguard-android-optimize.txt"
     const val proguardConsumerRules = "proguard-rules.pro"
     const val jvmTarget = "17"
-    const val kotlinCompilerExtensionVersion = "1.5.3"
+    const val kotlinCompilerExtensionVersion = "1.5.4"
+
+    val sourceCompatibility = JavaVersion.VERSION_17
+    val targetCompatibility = JavaVersion.VERSION_17
 }

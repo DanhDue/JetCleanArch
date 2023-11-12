@@ -48,13 +48,13 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = AppConfig.sourceCompatibility
+        targetCompatibility = AppConfig.targetCompatibility
     }
 
     kotlinOptions {
         jvmTarget = AppConfig.jvmTarget
-        freeCompilerArgs = Configs.FreeCompilerArgs
+        freeCompilerArgs = EnvConfigs.FreeCompilerArgs
     }
 
     buildFeatures {
@@ -111,20 +111,20 @@ android {
 
     buildTypes {
         debug {
-            signingConfig = signingConfigs.getByName(Configs.BuildConfigKey.debugSigningConfigName)
+            signingConfig = signingConfigs.getByName(EnvConfigs.BuildConfigKey.debugSigningConfigName)
             isDebuggable = true
             applicationIdSuffix = ".dev"
             addDebugBuildTypeConfigs()
             resValue("string", "app_name", "JetCleanArch(Dev)")
 
-            buildConfigStringField(Configs.BuildConfigKey.BASE_URL, Configs.Debug.BaseUrl)
-            buildConfigStringField(Configs.BuildConfigKey.DB_NAME, Configs.Debug.DbName)
-            buildConfigBooleanField(Configs.BuildConfigKey.CRASHLYTIC_IS_ENABLE, Configs.Debug.crashlyticsEnable)
-            buildConfigBooleanField(Configs.BuildConfigKey.ANALYTIC_IS_ENABLE, Configs.Debug.analyticsEnable)
+            buildConfigStringField(EnvConfigs.BuildConfigKey.BASE_URL, EnvConfigs.Debug.BaseUrl)
+            buildConfigStringField(EnvConfigs.BuildConfigKey.DB_NAME, EnvConfigs.Debug.DbName)
+            buildConfigBooleanField(EnvConfigs.BuildConfigKey.CRASHLYTIC_IS_ENABLE, EnvConfigs.Debug.crashlyticsEnable)
+            buildConfigBooleanField(EnvConfigs.BuildConfigKey.ANALYTIC_IS_ENABLE, EnvConfigs.Debug.analyticsEnable)
         }
 
         release {
-            signingConfig = signingConfigs.getByName(Configs.BuildConfigKey.releaseSigningConfigName)
+            signingConfig = signingConfigs.getByName(EnvConfigs.BuildConfigKey.releaseSigningConfigName)
             isDebuggable = false
             addReleaseBuildTypeConfigs()
             proguardFiles(
@@ -133,10 +133,10 @@ android {
             )
             resValue("string", "app_name", "JetCleanArch(Stg)")
 
-            buildConfigStringField(Configs.BuildConfigKey.BASE_URL, Configs.Release.BaseUrl)
-            buildConfigStringField(Configs.BuildConfigKey.DB_NAME, Configs.Release.DbName)
-            buildConfigBooleanField(Configs.BuildConfigKey.CRASHLYTIC_IS_ENABLE, Configs.Release.crashlyticsEnable)
-            buildConfigBooleanField(Configs.BuildConfigKey.ANALYTIC_IS_ENABLE, Configs.Release.analyticsEnable)
+            buildConfigStringField(EnvConfigs.BuildConfigKey.BASE_URL, EnvConfigs.Release.BaseUrl)
+            buildConfigStringField(EnvConfigs.BuildConfigKey.DB_NAME, EnvConfigs.Release.DbName)
+            buildConfigBooleanField(EnvConfigs.BuildConfigKey.CRASHLYTIC_IS_ENABLE, EnvConfigs.Release.crashlyticsEnable)
+            buildConfigBooleanField(EnvConfigs.BuildConfigKey.ANALYTIC_IS_ENABLE, EnvConfigs.Release.analyticsEnable)
         }
     }
 }

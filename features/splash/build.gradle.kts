@@ -3,7 +3,6 @@ import extensions.*
 plugins {
     id("commons.android-library")
     id("commons.dagger-hilt")
-    id("org.jetbrains.kotlin.android")
 }
 
 ksp {

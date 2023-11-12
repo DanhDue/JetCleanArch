@@ -15,8 +15,8 @@ android {
     addDefaultConfig()
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
-        freeCompilerArgs = Configs.FreeCoroutineCompilerArgs
+        jvmTarget = AppConfig.jvmTarget
+        freeCompilerArgs = EnvConfigs.FreeCoroutineCompilerArgs
     }
 }
 

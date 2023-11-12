@@ -1,4 +1,4 @@
-Jet CleanArch - A modern sample base code.
+JetCleanArch - A modern sample base code.
 =============================================
 
 This project uses many of the popular libraries, plugins, and tools of the Android ecosystem.

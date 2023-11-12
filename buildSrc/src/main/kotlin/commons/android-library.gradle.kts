@@ -1,7 +1,7 @@
 package commons
 
 import AppConfig
-import Configs
+import EnvConfigs
 import extensions.TEST
 import extensions.addCommonDependencies
 import extensions.buildConfigBooleanField
@@ -24,23 +24,23 @@ android {
 
     buildTypes {
         release {
-            buildConfigStringField(Configs.BuildConfigKey.BASE_URL, Configs.Release.BaseUrl)
-            buildConfigStringField(Configs.BuildConfigKey.DB_NAME, Configs.Release.DbName)
-            buildConfigBooleanField(Configs.BuildConfigKey.CRASHLYTIC_IS_ENABLE, Configs.Release.crashlyticsEnable)
-            buildConfigBooleanField(Configs.BuildConfigKey.ANALYTIC_IS_ENABLE, Configs.Release.analyticsEnable)
+            buildConfigStringField(EnvConfigs.BuildConfigKey.BASE_URL, EnvConfigs.Release.BaseUrl)
+            buildConfigStringField(EnvConfigs.BuildConfigKey.DB_NAME, EnvConfigs.Release.DbName)
+            buildConfigBooleanField(EnvConfigs.BuildConfigKey.CRASHLYTIC_IS_ENABLE, EnvConfigs.Release.crashlyticsEnable)
+            buildConfigBooleanField(EnvConfigs.BuildConfigKey.ANALYTIC_IS_ENABLE, EnvConfigs.Release.analyticsEnable)
         }
 
         debug {
-            buildConfigStringField(Configs.BuildConfigKey.BASE_URL, Configs.Debug.BaseUrl)
-            buildConfigStringField(Configs.BuildConfigKey.DB_NAME, Configs.Debug.DbName)
-            buildConfigBooleanField(Configs.BuildConfigKey.CRASHLYTIC_IS_ENABLE, Configs.Debug.crashlyticsEnable)
-            buildConfigBooleanField(Configs.BuildConfigKey.ANALYTIC_IS_ENABLE, Configs.Debug.analyticsEnable)
+            buildConfigStringField(EnvConfigs.BuildConfigKey.BASE_URL, EnvConfigs.Debug.BaseUrl)
+            buildConfigStringField(EnvConfigs.BuildConfigKey.DB_NAME, EnvConfigs.Debug.DbName)
+            buildConfigBooleanField(EnvConfigs.BuildConfigKey.CRASHLYTIC_IS_ENABLE, EnvConfigs.Debug.crashlyticsEnable)
+            buildConfigBooleanField(EnvConfigs.BuildConfigKey.ANALYTIC_IS_ENABLE, EnvConfigs.Debug.analyticsEnable)
         }
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = AppConfig.sourceCompatibility
+        targetCompatibility = AppConfig.targetCompatibility
     }
 
     buildFeatures {
@@ -48,8 +48,8 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
-        freeCompilerArgs = Configs.FreeCoroutineCompilerArgs
+        jvmTarget = AppConfig.jvmTarget
+        freeCompilerArgs = EnvConfigs.FreeCoroutineCompilerArgs
     }
 
     testOptions {
@@ -63,6 +63,15 @@ android.libraryVariants.all {
     val variantName = name
     kotlin.sourceSets {
         getByName("main") {
+            kotlin.srcDir(File("build/generated/ksp/$variantName/kotlin"))
+        }
+        getByName("test") {
+            kotlin.srcDir(File("build/generated/ksp/$variantName/kotlin"))
+        }
+        getByName("debug") {
+            kotlin.srcDir(File("build/generated/ksp/$variantName/kotlin"))
+        }
+        getByName("release") {
             kotlin.srcDir(File("build/generated/ksp/$variantName/kotlin"))
         }
     }

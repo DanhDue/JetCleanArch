@@ -10,11 +10,6 @@ android {
     namespace = "com.danhdue.jetcleanarch.features.welcome"
 }
 
-ksp {
-    arg("compose-destinations.mode", "navgraphs")
-    arg("compose-destinations.moduleName", "home")
-}
-
 dependencies {
     JETFRAMEWORK
     FRAMEWORK

@@ -30,17 +30,17 @@ class StartActivity : ComponentActivity() {
             lifecycle.repeatOnLifecycle(Lifecycle.State.CREATED) {
                 viewModel.startWelcome.collectLatest {
                     delay(WELCOME_DELAY_TIME)
-                    if (it) navigateWelcomeActivity() else navigateMainActivity()
+                    if (it) navigateWelcomeActivity() else navigateDashboardActivity()
                 }
 
             }
         }
     }
 
-    private fun navigateMainActivity() {
+    private fun navigateDashboardActivity() {
         launchActivity(
             packageName = packageName,
-            className = "com.danhdue.jetcleanarch.MainActivity"
+            className = "com.danhdue.jetcleanarch.features.dashboard.DashboardActivity"
         ).also {
             finish()
         }

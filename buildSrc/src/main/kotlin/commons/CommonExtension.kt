@@ -30,8 +30,8 @@ fun getLocalProperty(key: String, file: String = "local.properties"): Any {
 fun CommonExtension<*, *, *, *, *>.addComposeConfig() {
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = AppConfig.sourceCompatibility
+        targetCompatibility = AppConfig.targetCompatibility
     }
 
     buildFeatures {
@@ -62,8 +62,8 @@ fun CommonExtension<*, *, *, *, *>.addDefaultConfig() {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = AppConfig.sourceCompatibility
+        targetCompatibility = AppConfig.targetCompatibility
     }
 
     testOptions {
