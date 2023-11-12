@@ -306,11 +306,11 @@ fun DependencyHandler.addModuleDependencies() {
     implementation(project(mapOf("path" to ":libraries:jetframework")))
     implementation(project(mapOf("path" to ":libraries:testutils")))
 
-    implementation(project(mapOf("path" to ":features:splash")))
-    implementation(project(mapOf("path" to ":features:welcome")))
-    implementation(project(mapOf("path" to ":features:dashboard")))
-    implementation(project(mapOf("path" to ":features:home")))
-    implementation(project(mapOf("path" to ":features:settings")))
+    implementation(project(mapOf("path" to ":presentation:splash")))
+    implementation(project(mapOf("path" to ":presentation:welcome")))
+    implementation(project(mapOf("path" to ":presentation:dashboard")))
+    implementation(project(mapOf("path" to ":presentation:home")))
+    implementation(project(mapOf("path" to ":presentation:settings")))
 }
 
 val DependencyHandler.FRAMEWORK
@@ -347,16 +347,16 @@ val DependencyHandler.DOMAIN
     get() = implementation(project(mapOf("path" to ":domain")))
 
 val DependencyHandler.FEATURE_SPLASH
-    get() = implementation(project(mapOf("path" to ":features:splash")))
+    get() = implementation(project(mapOf("path" to ":presentation:splash")))
 
 val DependencyHandler.FEATURE_WELCOME
-    get() = implementation(project(mapOf("path" to ":features:welcome")))
+    get() = implementation(project(mapOf("path" to ":presentation:welcome")))
 
 val DependencyHandler.FEATURE_DASHBOARD
-    get() = implementation(project(mapOf("path" to ":features:dashboard")))
+    get() = implementation(project(mapOf("path" to ":presentation:dashboard")))
 
 val DependencyHandler.FEATURE_HOME
-    get() = implementation(project(mapOf("path" to ":features:home")))
+    get() = implementation(project(mapOf("path" to ":presentation:home")))
 
 val DependencyHandler.FEATURE_SETTINGS
-    get() = implementation(project(mapOf("path" to ":features:settings")))
+    get() = implementation(project(mapOf("path" to ":presentation:settings")))

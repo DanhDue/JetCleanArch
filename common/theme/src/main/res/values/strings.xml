@@ -32,6 +32,7 @@
     <string name="text_empty">Empty</string>
 
     <string name="text_finish">Finish</string>
+    <string name="text_this_feature_is_developing">This feature is developing.</string>
 
     <string name="text_language_english">English</string>
     <string name="text_language_vietnamese">Vietnamese</string>

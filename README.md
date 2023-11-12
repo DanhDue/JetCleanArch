@@ -103,7 +103,7 @@ Components of domain layer include:
 - __usecase__: They enclose a single action, like getting data from a database or posting to a service. They use the repositories to resolve the action they are supposed to do. They usually override the operator ```invoke``` , so they can be called as a function.
 
 #### 6. Presentation
-The ```features``` layer contains components involved in showing information to the user. The main part of this layer are the views(activity, compose) and ViewModels.
+The ```presentation``` layer contains features involved in showing information to the user. The main part of this layer are the views(activity, compose) and ViewModels.
 
 
 IV. Technical Information used in this project:
