@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "com.danhdue.jetcleanarch.local"
+    namespace = "com.danhdue.jetcleanarch.data.local"
 }
 
 dependencies {

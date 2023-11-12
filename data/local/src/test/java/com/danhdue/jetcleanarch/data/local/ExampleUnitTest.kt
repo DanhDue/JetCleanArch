@@ -1,4 +1,4 @@
-package com.danhdue.jetcleanarch.local
+package com.danhdue.jetcleanarch.data.local
 
 import org.junit.Test
 

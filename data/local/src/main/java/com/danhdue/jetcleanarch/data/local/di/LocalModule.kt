@@ -1,4 +1,4 @@
-package com.danhdue.jetcleanarch.model.di
+package com.danhdue.jetcleanarch.data.local.di
 
 import com.danhdue.jetcleanarch.model.BuildConfig
 import dagger.Module

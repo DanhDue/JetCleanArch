@@ -1,4 +1,4 @@
-package com.danhdue.jetcleanarch.local
+package com.danhdue.jetcleanarch.data.local
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.danhdue.jetcleanarch.local.test", appContext.packageName)
+        assertEquals("com.danhdue.jetcleanarch.data.local.test", appContext.packageName)
     }
 }
