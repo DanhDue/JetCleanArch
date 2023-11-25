@@ -1,4 +1,4 @@
-JetCleanArch - A modern sample base code.
+JetCleanArch - A modern base code.
 =============================================
 
 This project uses many of the popular libraries, plugins, and tools of the Android ecosystem.
@@ -7,53 +7,11 @@ It is based on [Android Jetpack][0], [Kotlin][1], [Clean Architecture][2] & [Dep
 I. Introduction
 ------------
 
-This project is a sample base code that implements the Clean Architecture and uses Android Jetpack. It presents modern approach to [Android](https://www.android.com/) application development using [Kotlin](https://kotlinlang.org/) and latest tech-stacks.
+This base code implements the Clean Architecture, follows the SOLID principle and uses Android Jetpack. It presents a modern approach to [Android](https://www.android.com/) application development using [Kotlin](https://kotlinlang.org/) and the latest tech stacks.
 
-The goal of the project is to demonstrate best practices, provide a set of guidelines, and present modern Android
-application architecture that is modular, scalable, maintainable and testable. This application may look simple, but it
-has all of these small details that will set the rock-solid foundation of the larger app suitable for bigger teams and
-long application lifecycle management.
+The goal of the project is to demonstrate best practices, provide a set of guidelines, and present modern Android application architecture that is modular, scalable, maintainable and testable.
 
-II. Architecture
-------------
-
-A well planned architecture is extremely important for an app to scale and all architectures have one common goal- to manage complexity of your app.
-This isn't something to be worried about in smaller apps however it may prove very useful when working on apps with longer development lifecycle and a bigger team.
-
-Clean architecture was proposed by [Robert C. Martin][35] in 2012 in the [Clean Code Blog][2] and it follow the SOLID principle.
-
-<p align="center"><img src="screenshots/clean_arch.jpeg" alt="Clean Architecture"></p>
-
-The circles represent different layers of your app. Note that:
-
-- The center circle is the most abstract, and the outer circle is the most concrete. This is called the [Abstraction Principle][36]. The Abstraction Principle specifies that inner circles should contain business logic, and outer circles should contain implementation details.
-
-- Another principle of Clean Architecture is the [Dependency Inversion][37]. This rule specifies that each circle can depend only on the nearest inward circle ie. low-level modules do not depend on high-level modules but the other way around.
-
-<p align="center"><img src="screenshots/architecture.png" alt="Clean Architecture Diagram"></p>
-
-#### Why Clean Architecture?
-----------------------------
-
-- ```Loose coupling between the code``` - The code can easily be modified without affecting any or a large part of the app's codebase thus easier to scale the application later on.
-- Easier to ```test``` code.
-- ```Separation of Concern``` - Different modules have specific responsibilities making it easier for modification and maintenance.
-
-#### S.O.L.I.D Principles
-------------------------
-
-- [__Single Responsibility__][30]: Each software component should have only one reason to change – one responsibility.
-
-- [__Open-Closed__][31]: You should be able to extend the behavior of a component, without breaking its usage, or modifying its extensions.
-
-- [__Liskov Substitution__][32]: If you have a class of one type, and any subclasses of that class, you should be able to represent the base class usage with the subclass, without breaking the app.
-
-- [__Interface Segregation__][33]: It’s better to have many smaller interfaces than a large one, to prevent the class from implementing the methods that it doesn’t need.
-
-- [__Dependency Inversion__][34]: Components should depend on abstractions rather than concrete implementations. Also higher level modules shouldn’t depend on lower level modules.
-
-
-III. Project Structure:
+II. Project Structure:
 ------------------
 <p align="center"><img src="screenshots/project_structure.png" alt="Clean Architecture Diagram"></p>
 
@@ -106,7 +64,7 @@ Components of domain layer include:
 The ```presentation``` layer contains features involved in showing information to the user. The main part of this layer are the views(activity, compose) and ViewModels.
 
 
-IV. Technical Information used in this project:
+III. Technical Information used in this project:
 -------------------------------------------
 
 1. Programming Language: [Android Kotlin][1].
@@ -114,11 +72,10 @@ IV. Technical Information used in this project:
 3. Multiple Threads: [Kotlin Coroutine][14].
 4. Third Party Libraries: [Retrofit][25], [Hilt][22], [Firebase][24], [MockK][21], [etc][15],...
 5. Unit Test: [Android testing framework][3], [MockK][21], and [Robolectric][26]; Unit Test coverage Analysis using [JaCoCo][22]; [etc][15],....
-6. [ScreenShots][16]
 
 Moreover, you can read more detail about some project components by clicking to links contained at [References][17] part.
 
-V. Libraries Used
+IV. Libraries Used
 --------------
 
 * [Android Jetpack][0] - Components for core system capabilities, Kotlin extensions and support for
@@ -129,7 +86,7 @@ V. Libraries Used
   * [Lifecycle][38] - Perform actions in response to a change in the lifecycle status of another component, such as activities and fragments.
   * [ViewModel][39] - Designed to store and manage UI-related data in a lifecycle conscious way. The ViewModel class allows data to survive configuration changes such as screen rotations.
   * [Room][40] - Provides an abstraction layer over SQLite used for offline data caching.
-  * [Paging3][41] - The Paging Library makes it easier for you to load data gradually and gracefully within your app's [RecyclerView][42].
+  * [Paging3][41] - The Paging Library makes it easier for you to load data gradually and gracefully.
   * ....
 
 * [Compose][4]
@@ -151,8 +108,6 @@ V. Libraries Used
   * ....
 
 * Third party
-  * [Kotlin Coroutines][15] for managing background threads with simplified code and reducing needs for callbacks
-  * [Flow][54] - Flows are built on top of coroutines and can provide multiple values. A flow is conceptually a stream of data that can be computed asynchronously.
   * [Dagger Hilt][51] - Dependency Injection library.
   * [Gradle Kotlin DSL][59] - makes it easy to manage dependency all module that we have
   * [Google-KSP][52] - Kotlin Symbol Processing API
@@ -182,21 +137,7 @@ V. Libraries Used
 * [Spotless][12] - It’s pretty useful in automating fixes for pretty simple (and common) formatting mistakes as in spaces, newlines, removing unnecessary imports, etc.
 * [Detekt][13] - Static code analysis for Kotlin.
 
-VI. Screenshots
------------
-1. Coverage Overview.
-
-![Coverage Overview](screenshots/unit_tests/coverage_overview.png "Coverage Overview.")
-
-2. Unit Test Detail for a ViewModel.
-
-![Unit Test Detail for ViewModel](screenshots/unit_tests/view_model_detail.png "Unit Test Detail for ViewModel.")
-
-3. Unit Test Detail for a Repository
-
-![Unit Test Detail for Repository](screenshots/unit_tests/repository_detail.png "Unit Test Detail for Repository.")
-
-VII. References
+V. References
 ----------
 * [setup Jacoco for an Android Multiple Module Project.][29]
 * [Change Android Retrofit's Base Url at runtime.][28]
