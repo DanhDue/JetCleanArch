@@ -9,10 +9,8 @@ import extensions.buildConfigBooleanField
 import extensions.buildConfigStringField
 
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.plugin.parcelize")
-    id("com.google.devtools.ksp")
+    id("commons.android-library")
+    id("commons.dagger-hilt")
 }
 
 android {
@@ -49,6 +47,8 @@ android {
     }
 
     kotlinOptions {
+        languageVersion = AppConfig.kotlinVersion
+        apiVersion = AppConfig.kotlinVersion
         jvmTarget = AppConfig.jvmTarget
         freeCompilerArgs = EnvConfigs.FreeCompilerArgs
     }
@@ -81,7 +81,6 @@ android.libraryVariants.all {
 dependencies {
     // Common
     addCommonDependencies()
-
     // compose navigation
     addNavigationDependencies()
     // Test

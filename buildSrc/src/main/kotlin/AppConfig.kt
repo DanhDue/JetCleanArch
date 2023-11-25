@@ -15,6 +15,7 @@ object AppConfig {
     const val proguardConsumerRules = "proguard-rules.pro"
     const val jvmTarget = "17"
     const val kotlinCompilerExtensionVersion = "1.5.4"
+    const val kotlinVersion = "1.9"
 
     val sourceCompatibility = JavaVersion.VERSION_17
     val targetCompatibility = JavaVersion.VERSION_17

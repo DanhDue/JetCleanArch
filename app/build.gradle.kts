@@ -53,6 +53,8 @@ android {
     }
 
     kotlinOptions {
+        languageVersion = AppConfig.kotlinVersion
+        apiVersion = AppConfig.kotlinVersion
         jvmTarget = AppConfig.jvmTarget
         freeCompilerArgs = EnvConfigs.FreeCompilerArgs
     }

@@ -28,20 +28,17 @@ fun SettingsScreen(
 ) {
     val checkedState = remember { mutableStateOf(viewModel.isNightMode()) }
 
-    SettingsBody(modifier) {
-        SettingsContent(viewModel, checkedState, navigator)
-    }
+    SettingsBody(modifier) { SettingsContent(viewModel, checkedState, navigator) }
 }
 
 @Composable
 private fun SettingsBody(
-    modifier: Modifier = Modifier,
-    pageContent: @Composable (PaddingValues) -> Unit
+    modifier: Modifier = Modifier, pageContent: @Composable (PaddingValues) -> Unit
 ) {
     Scaffold(
         modifier = modifier,
         topBar = { JCAToolbar(R.string.toolbar_settings_title) },
-        content = { pageContent.invoke(it) }
+        content = { pageContent.invoke(it) },
     )
 }
 
@@ -49,10 +46,5 @@ private fun SettingsBody(
 @Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES, name = "Dark Mode")
 @Composable
 fun SettingsScreenPreview() {
-    JetCleanArchTheme {
-        Surface {
-            SettingsBody {
-            }
-        }
-    }
+    JetCleanArchTheme { Surface { SettingsBody {} } }
 }
